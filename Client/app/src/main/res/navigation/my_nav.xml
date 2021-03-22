@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/workoutListFragment">
+
+    <fragment
+        android:id="@+id/workoutListFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.workouts.WorkoutListFragment"
+        android:label="Edzések"
+        tools:layout="@layout/fragment_workout_list" >
+        <action
+            android:id="@+id/action_workoutListFragment_to_addWorkoutFragment"
+            app:destination="@id/addWorkoutFragment" />
+        <action
+            android:id="@+id/action_workoutListFragment_to_workoutExerciseListFragment"
+            app:destination="@id/workoutExerciseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWorkoutFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.workouts.AddWorkoutFragment"
+        android:label="Edzés hozzáadása"
+        tools:layout="@layout/fragment_add_workout" >
+        <action
+            android:id="@+id/action_addWorkoutFragment_to_exerciseListFragment"
+            app:destination="@id/workoutExerciseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutExerciseListFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.WorkoutExerciseListFragment"
+        android:label="Gyakorlatok"
+        tools:layout="@layout/fragment_workout_exercise_list" >
+        <argument
+            android:name="workoutId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_workoutExerciseListFragment_to_workoutListFragment"
+            app:destination="@id/workoutListFragment" />
+        <action
+            android:id="@+id/action_workoutExerciseListFragment_to_chooseWorkoutTypeFragment"
+            app:destination="@id/chooseWorkoutTypeFragment" />
+        <action
+            android:id="@+id/action_workoutExerciseListFragment_to_addNoWeightRepsWorkoutExerciseFragment"
+            app:destination="@id/addNoWeightRepsWorkoutExerciseFragment" />
+        <action
+            android:id="@+id/action_workoutExerciseListFragment_to_addTimeRepsWorkoutExerciseFragment"
+            app:destination="@id/addTimeRepsWorkoutExerciseFragment" />
+        <action
+            android:id="@+id/action_workoutExerciseListFragment_to_addWeigthRepsWorkoutExerciseFragment"
+            app:destination="@id/addWeightRepsWorkoutExerciseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoWeightRepsWorkoutExerciseFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.AddNoWeightRepsWorkoutExerciseFragment"
+        android:label="Új gyakorlat"
+        tools:layout="@layout/fragment_add_no_weight_reps_workout_exercise" >
+        <argument android:name="workoutId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_addNoWeightRepsWorkoutExerciseFragment_to_workoutExerciseListFragment"
+            app:destination="@id/workoutExerciseListFragment" />
+        <argument
+            android:name="workoutExerciseId"
+            app:argType="long" />
+        <argument
+            android:name="comment"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseWorkoutTypeFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.ChooseWorkoutTypeFragment"
+        android:label="fragment_choose_workout_type"
+        tools:layout="@layout/fragment_choose_workout_type" >
+        <action
+            android:id="@+id/action_chooseWorkoutTypeFragment_to_addRepsWorkoutExerciseFragment"
+            app:destination="@id/addNoWeightRepsWorkoutExerciseFragment" />
+        <action
+            android:id="@+id/action_chooseWorkoutTypeFragment_to_addWeightRepsWorkoutExerciseFragment"
+            app:destination="@id/addWeightRepsWorkoutExerciseFragment" />
+        <action
+            android:id="@+id/action_chooseWorkoutTypeFragment_to_addTimeRepsWorkoutExerciseFragment"
+            app:destination="@id/addTimeRepsWorkoutExerciseFragment" />
+        <argument
+            android:name="workoutId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWeightRepsWorkoutExerciseFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.AddWeightRepsWorkoutExerciseFragment"
+        android:label="fragment_add_weight_reps_workout_exercise"
+        tools:layout="@layout/fragment_add_weight_reps_workout_exercise" >
+        <action
+            android:id="@+id/action_addWeightRepsWorkoutExerciseFragment_to_workoutExerciseListFragment"
+            app:destination="@id/workoutExerciseListFragment" />
+        <argument
+            android:name="workoutId"
+            app:argType="long" />
+        <argument
+            android:name="workoutExerciseId"
+            app:argType="long" />
+        <argument android:name="comment"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTimeRepsWorkoutExerciseFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.AddTimeRepsWorkoutExerciseFragment"
+        android:label="fragment_add_time_reps_workout_exercise"
+        tools:layout="@layout/fragment_add_time_reps_workout_exercise" >
+        <action
+            android:id="@+id/action_addTimeRepsWorkoutExerciseFragment_to_workoutExerciseListFragment"
+            app:destination="@id/workoutExerciseListFragment" />
+        <argument
+            android:name="workoutId"
+            app:argType="long" />
+        <argument
+            android:name="workoutExerciseId"
+            app:argType="long" />
+        <argument
+            android:name="comment"
+            app:argType="string" />
+    </fragment>
+</navigation>

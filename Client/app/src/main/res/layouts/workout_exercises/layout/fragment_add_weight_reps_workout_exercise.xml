@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10sp"
+    tools:context="view.mainactivity.fragments.workout_exercises.AddWeightRepsWorkoutExerciseFragment">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Gyakorlat neve"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginBottom="8dp"
+        android:text="Ismétlések"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/etNumberOfReps"
+        app:layout_constraintStart_toStartOf="@+id/etNumberOfReps" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="8dp"
+        android:text="Súly(kg)"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/etWeightOfReps"
+        app:layout_constraintStart_toStartOf="@+id/etWeightOfReps" />
+
+    <EditText
+        android:id="@+id/etNumberOfReps"
+        android:layout_width="201dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="116dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintEnd_toStartOf="@+id/btn_reps_plus"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_reps_minus"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/etWeightOfReps"
+        android:layout_width="201dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/btn_weight_plus"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_weight_minus" />
+
+    <ImageButton
+        android:id="@+id/btn_weight_plus"
+        android:layout_width="54sp"
+        android:layout_height="54sp"
+        android:background="@color/purple_200_trans"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_add_plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/etWeightOfReps"
+        app:layout_constraintTop_toTopOf="@+id/etWeightOfReps" />
+
+    <ImageButton
+        android:id="@+id/btn_reps_minus"
+        android:layout_width="54sp"
+        android:layout_height="54sp"
+        android:background="@color/purple_200_trans"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintEnd_toStartOf="@+id/etNumberOfReps"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etNumberOfReps" />
+
+    <ImageButton
+        android:id="@+id/btn_weight_minus"
+        android:layout_width="54sp"
+        android:layout_height="54sp"
+        android:background="@color/purple_200_trans"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintEnd_toStartOf="@+id/etWeightOfReps"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etWeightOfReps" />
+
+    <ImageButton
+        android:id="@+id/btn_reps_plus"
+        android:layout_width="54sp"
+        android:layout_height="54sp"
+        android:background="@color/purple_200_trans"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_add_plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/etNumberOfReps"
+        app:layout_constraintTop_toTopOf="@+id/etNumberOfReps" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="16dp"
+        android:text="Komment"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/etClientComment"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etClientComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/black_border"
+        android:lines="3"
+        android:padding="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNumberOfReps"
+        app:layout_constraintVertical_bias="0.969"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSetsWeight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddSet"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddSet"
+        android:layout_width="201dp"
+        android:layout_height="47dp"
+        android:background="@drawable/add_button_selector"
+        android:text="Szett hozzáadása"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNumberOfReps" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

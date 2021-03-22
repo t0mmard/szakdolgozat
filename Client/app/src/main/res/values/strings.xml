@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FitnessAppClient</string>
+    <string-array name="months">
+        <item>Január</item>
+    </string-array>
+    <string name="placeholder">Something</string>
+</resources>

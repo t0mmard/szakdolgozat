@@ -1,0 +1,58 @@
+package com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises
+
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.fitnessappclient.R
+import com.example.fitnessappclient.repository.entities.WorkoutExercise
+import com.example.fitnessappclient.repository.relations.WorkoutExerciseAndExercise
+import com.example.fitnessappclient.viewmodel.WorkoutViewModel
+import kotlinx.android.synthetic.main.item_exercise.view.*
+
+class WorkoutExerciseAdapter(private val myListener: WorkoutExerciseRecyclerViewListener) : RecyclerView.Adapter<WorkoutExerciseAdapter.WorkoutExerciseViewHolder>() {
+
+    private var workoutExercises = emptyList<WorkoutExerciseAndExercise>()
+
+    inner class WorkoutExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): WorkoutExerciseViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_exercise, parent, false)
+        return WorkoutExerciseViewHolder(view)
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onBindViewHolder(holder:WorkoutExerciseAdapter.WorkoutExerciseViewHolder, position: Int) {
+        holder.itemView.apply{
+            setOnClickListener{
+                myListener.myOnClickListener(workoutExercises[position])
+            }
+            setOnTouchListener(View.OnTouchListener{ view, motionevent ->
+                myListener.myOnTouchListener(view,motionevent)
+            })
+            if(workoutExercises.lastIndex == position){
+                (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 1000
+            }
+        }
+        holder.itemView.tvExerciseNumber.text = "${position + 1}."
+        holder.itemView.tvExercise.text = workoutExercises[position].exercise.exerciseName
+    }
+
+    fun setData(workoutExercises : List<WorkoutExerciseAndExercise>){
+        this.workoutExercises = workoutExercises
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount(): Int {
+        return workoutExercises.size
+    }
+
+    fun removeAt(position: Int, workoutViewModel: WorkoutViewModel){
+        workoutViewModel.removeWorkoutExercise(workoutExercises[position].workoutExercise)
+    }
+
+}

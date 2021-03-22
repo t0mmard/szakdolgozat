@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/Settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_sports"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/Settings2"
+        android:title="Settings2"
+        android:icon="@drawable/ic_sports"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/Settings3"
+        android:title="Settings"
+        android:icon="@drawable/ic_sports"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/Settings4"
+        android:title="Settings3"
+        android:icon="@drawable/ic_sports"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/Settings5"
+        android:title="Close"
+        android:icon="@drawable/ic_sports"
+        app:showAsAction="never"/>
+</menu>
