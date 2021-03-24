@@ -2,19 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainConstraintLayout"
+    android:id="@+id/cl_mainactivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10sp"
     tools:context=".view.mainactivity.MainActivity">
 
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/fragment_mainactivity"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/my_nav"
+        app:navGraph="@navigation/home_nav"
         tools:layout_editor_absoluteX="141dp"
         tools:layout_editor_absoluteY="255dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

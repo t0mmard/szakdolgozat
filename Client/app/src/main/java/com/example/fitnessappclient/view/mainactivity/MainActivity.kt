@@ -2,22 +2,12 @@ package com.example.fitnessappclient.view.mainactivity
 
 import android.os.Bundle
 import android.view.KeyEvent
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.fitnessappclient.R
-import com.example.fitnessappclient.repository.LocalDatabase
-import com.example.fitnessappclient.repository.Repository
-import com.example.fitnessappclient.repository.entities.Exercise
-import com.example.fitnessappclient.repository.entities.ExerciseType
-import com.example.fitnessappclient.repository.entities.User
-import com.example.fitnessappclient.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.runBlocking
-import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Felső sávon a fragment neve jelenjen meg
-        setupActionBarWithNavController(findNavController(R.id.fragment))
+        setupActionBarWithNavController(findNavController(R.id.fragment_mainactivity))
 
     //beállítjuk a fragmentnek a WorkoutListFragmentet
         /*supportFragmentManager.beginTransaction().apply {

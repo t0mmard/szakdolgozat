@@ -5,6 +5,7 @@ import com.example.fitnessappclient.repository.daos.UserDao
 import com.example.fitnessappclient.repository.entities.*
 import com.example.fitnessappclient.repository.relations.UserWithWorkouts
 import com.example.fitnessappclient.repository.relations.WorkoutExerciseAndExercise
+import com.example.fitnessappclient.repository.relations.WorkoutPlanWithWorkoutPlanExercises
 import java.util.*
 
 class Repository(private val userDao: UserDao) {
@@ -71,6 +72,14 @@ class Repository(private val userDao: UserDao) {
 
     fun getWorkoutsByDate(date: Date) : LiveData<List<Workout>>{
         return userDao.getWorkoutsByDate(date)
+    }
+
+    fun getAllWorkoutPlans(): LiveData<List<WorkoutPlan>>{
+        return userDao.getAllWorkoutPlans()
+    }
+
+    fun getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId : Long): LiveData<WorkoutPlanWithWorkoutPlanExercises>{
+        return  userDao.getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId)
     }
 
 }

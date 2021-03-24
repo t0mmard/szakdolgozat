@@ -1,7 +1,26 @@
 <resources>
     <string name="app_name">FitnessAppClient</string>
-    <string-array name="months">
-        <item>Január</item>
-    </string-array>
+    <string name="which">%1$d.</string>
+
+    <string name="repetition">ism.</string>
+    <string name="weight">kg</string>
+    <string name="distance">m</string>
+    <string name="time">perc</string>
+
+    <string name="add_workout_question">Edzés neve</string>
+    <string name="new_workout_hint">Új edzés</string>
+    <string name="next">Tovább</string>
+    <string name="empty_workout">Üres edzés</string>
+    <string name="add_workout_plan_question">Edzésminta</string>
+
+    <string name="exercise_type">Gyakorlat típus</string>
+    <string name="exercise">Gyakorlat</string>
+
     <string name="placeholder">Something</string>
+    <string name="number_placeholder">10</string>
+
+    <string name="today">Ma</string>
+    <string name="tomorrow">Holnap</string>
+    <string name="yesterday">Tegnap</string>
+
 </resources>

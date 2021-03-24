@@ -1,47 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_set_outer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10sp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:padding="10sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_set_inner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="10dp">
 
         <TextView
-            android:id="@+id/tvSets"
-            android:layout_width="0dp"
+            android:id="@+id/tv_set1"
+            android:layout_width="wrap_content"
             android:layout_height="50sp"
-            android:background="@drawable/item_background"
-            android:gravity="center"
-            android:text="0"
+            android:layout_marginStart="36dp"
+            android:gravity="bottom"
+            android:text="@string/number_placeholder"
             android:textColor="@color/oxford"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_set_number"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/tvSetNumber"
+            android:id="@+id/tv_set_number"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:background="@drawable/item_background"
-            android:gravity="left"
-            android:paddingRight="10sp"
-            android:text="0."
+            android:layout_height="wrap_content"
+            android:gravity="bottom
+"
+            android:text="@string/number_placeholder"
             android:textColor="@color/periwinkle"
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_set_unit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:text="@string/placeholder"
+            android:textColor="@color/periwinkle"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_set1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_set2"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:gravity="bottom"
+            android:text="@string/number_placeholder"
+            android:textColor="@color/oxford"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_set1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_set_unit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:text="@string/placeholder"
+            android:textColor="@color/periwinkle"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_set2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.483" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.80" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -9,6 +9,7 @@ import com.example.fitnessappclient.repository.LocalDatabase
 import com.example.fitnessappclient.repository.Repository
 import com.example.fitnessappclient.repository.entities.*
 import com.example.fitnessappclient.repository.relations.WorkoutExerciseAndExercise
+import com.example.fitnessappclient.repository.relations.WorkoutPlanWithWorkoutPlanExercises
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -94,4 +95,13 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
             repository.removeWorkoutExercise(workoutExercise)
         }
     }
+
+    fun getAllWorkoutPlans(): LiveData<List<WorkoutPlan>>{
+        return repository.getAllWorkoutPlans()
+    }
+
+    fun getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId : Long): LiveData<WorkoutPlanWithWorkoutPlanExercises>{
+        return repository.getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId)
+    }
+
 }

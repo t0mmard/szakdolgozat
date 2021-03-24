@@ -7,11 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ListAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavArgs
-import androidx.navigation.NavType
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.fitnessappclient.R
@@ -19,10 +16,8 @@ import com.example.fitnessappclient.repository.entities.Exercise
 import com.example.fitnessappclient.repository.entities.ExerciseType
 import com.example.fitnessappclient.repository.entities.WorkoutExercise
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
-import kotlinx.android.synthetic.main.fragment_add_workout.view.*
 import kotlinx.android.synthetic.main.fragment_choose_workout_type.*
 import kotlinx.android.synthetic.main.fragment_choose_workout_type.view.*
-import kotlinx.android.synthetic.main.fragment_choose_workout_type.view.btnAddExerciseType
 
 class ChooseWorkoutTypeFragment : Fragment() {
 
@@ -51,14 +46,10 @@ class ChooseWorkoutTypeFragment : Fragment() {
 
         val typeList = listOf<String>("Ismétlések","Ismétlések súllyal","Idő")
 
-        val adapter = ArrayAdapter<String>(
-            requireContext(),
-            R.layout.support_simple_spinner_dropdown_item,
-            typeList
-        )
-        view.spExerciseType.adapter = adapter
+        val adapter = ArrayAdapter<String>( requireContext(), R.layout.support_simple_spinner_dropdown_item, typeList )
+        view.sp_chooseworkout_exercisetype.adapter = adapter
 
-        view.spExerciseType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        view.sp_chooseworkout_exercisetype.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
@@ -80,7 +71,7 @@ class ChooseWorkoutTypeFragment : Fragment() {
                                 R.layout.support_simple_spinner_dropdown_item,
                                 exerciseNames.toMutableList()
                             )
-                            view.spExercise.adapter = exerciseAdapter
+                            view.sp_chooseworkout_exercise.adapter = exerciseAdapter
                         })
                     }
                     1 ->{
@@ -94,7 +85,7 @@ class ChooseWorkoutTypeFragment : Fragment() {
                                 R.layout.support_simple_spinner_dropdown_item,
                                 exerciseNames.toMutableList()
                             )
-                            view.spExercise.adapter = exerciseAdapter
+                            view.sp_chooseworkout_exercise.adapter = exerciseAdapter
                         })
                     }
                     2 ->{
@@ -108,20 +99,20 @@ class ChooseWorkoutTypeFragment : Fragment() {
                                 R.layout.support_simple_spinner_dropdown_item,
                                 exerciseNames.toMutableList()
                             )
-                            view.spExercise.adapter = exerciseAdapter
+                            view.sp_chooseworkout_exercise.adapter = exerciseAdapter
                         })
                     }
                 }
             }
         }
 
-        view.btnAddExerciseType.setOnClickListener {
+        view.btn_chooseworkout_addexercise.setOnClickListener {
             when(type){
                 ExerciseType.REPETITION -> {
                     val workoutExercise = WorkoutExercise(
                         0,
                         args.workoutId,
-                        exerciseList[spExercise.selectedItemPosition].exerciseId,
+                        exerciseList[sp_chooseworkout_exercise.selectedItemPosition].exerciseId,
                         null,
                         null
                     )
@@ -135,7 +126,7 @@ class ChooseWorkoutTypeFragment : Fragment() {
                     val workoutExercise = WorkoutExercise(
                         0,
                         args.workoutId,
-                        exerciseList[spExercise.selectedItemPosition].exerciseId,
+                        exerciseList[sp_chooseworkout_exercise.selectedItemPosition].exerciseId,
                         null,
                         null
                     )
@@ -149,7 +140,7 @@ class ChooseWorkoutTypeFragment : Fragment() {
                     val workoutExercise = WorkoutExercise(
                         0,
                         args.workoutId,
-                        exerciseList[spExercise.selectedItemPosition].exerciseId,
+                        exerciseList[sp_chooseworkout_exercise.selectedItemPosition].exerciseId,
                         null,
                         null
                     )

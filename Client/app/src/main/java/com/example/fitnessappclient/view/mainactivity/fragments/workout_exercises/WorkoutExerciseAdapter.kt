@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessappclient.R
-import com.example.fitnessappclient.repository.entities.WorkoutExercise
 import com.example.fitnessappclient.repository.relations.WorkoutExerciseAndExercise
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import kotlinx.android.synthetic.main.item_exercise.view.*
@@ -31,15 +30,12 @@ class WorkoutExerciseAdapter(private val myListener: WorkoutExerciseRecyclerView
             setOnClickListener{
                 myListener.myOnClickListener(workoutExercises[position])
             }
-            setOnTouchListener(View.OnTouchListener{ view, motionevent ->
-                myListener.myOnTouchListener(view,motionevent)
-            })
             if(workoutExercises.lastIndex == position){
-                (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 1000
+                (layoutParams as RecyclerView.LayoutParams).bottomMargin = 1000
             }
+            tv_exercise_number.text = context.getString(R.string.which, position + 1)
+            tv_exercise_name.text = workoutExercises[position].exercise.exerciseName
         }
-        holder.itemView.tvExerciseNumber.text = "${position + 1}."
-        holder.itemView.tvExercise.text = workoutExercises[position].exercise.exerciseName
     }
 
     fun setData(workoutExercises : List<WorkoutExerciseAndExercise>){

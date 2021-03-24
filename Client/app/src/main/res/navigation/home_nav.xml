@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_workoutListFragment_to_workoutExerciseListFragment"
             app:destination="@id/workoutExerciseListFragment" />
+        <action
+            android:id="@+id/action_workoutListFragment_to_planFragment"
+            app:destination="@id/planFragment" />
+        <action
+            android:id="@+id/action_workoutListFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/addWorkoutFragment"
@@ -120,4 +126,14 @@
             android:name="comment"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/planFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.plans.PlanFragment"
+        android:label="fragment_plan"
+        tools:layout="@layout/fragment_plan" />
 </navigation>

@@ -1,9 +1,10 @@
 package com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessappclient.R
 import com.example.fitnessappclient.repository.entities.ExerciseType
@@ -24,19 +25,37 @@ class SetsAdapter(val exerciseType: ExerciseType): RecyclerView.Adapter<SetsAdap
     }
 
     override fun onBindViewHolder(holder: SetViewHolder, position: Int) {
-        val view = holder.itemView
-        when(exerciseType){
-            ExerciseType.REPETITION->{
-                view.tvSets.text = "${sets[position].numberOfRepetitions}"
+        holder.itemView.apply {
+            when (exerciseType) {
+                ExerciseType.REPETITION -> {
+                    //csak 1 érték van ezért a constrainteket kicsit átalakaítjuk
+                    val set = ConstraintSet()
+                    set.clone(cl_set_inner)
+                    set.clear(R.id.tv_set1,ConstraintSet.START)
+                    set.clear(R.id.tv_set1,ConstraintSet.END)
+                    set.addToHorizontalChain(R.id.tv_set1,ConstraintSet.PARENT_ID,ConstraintSet.PARENT_ID)
+                    set.applyTo(cl_set_inner)
+
+                    tv_set1.text = "${sets[position].numberOfRepetitions}"
+                    tv_set_unit1.text = context.getString(R.string.repetition)
+                    tv_set2.visibility = View.INVISIBLE
+                    tv_set_unit2.visibility = View.INVISIBLE
+                }
+                ExerciseType.REPETITION_WITH_WEIGHT -> {
+                    tv_set1.text = "${sets[position].numberOfRepetitions}"
+                    tv_set_unit1.text = context.getString(R.string.repetition)
+                    tv_set2.text = "${sets[position].secondaryNumber}"
+                    tv_set_unit2.text = context.getString(R.string.weight)
+                }
+                ExerciseType.TIME -> {
+                    tv_set1.text = "${sets[position].numberOfRepetitions}"
+                    tv_set_unit1.text = context.getString(R.string.time)
+                    tv_set2.text = "${sets[position].secondaryNumber}"
+                    tv_set_unit2.text = context.getString(R.string.distance)
+                }
             }
-            ExerciseType.REPETITION_WITH_WEIGHT->{
-                view.tvSets.text = "${sets[position].numberOfRepetitions} x ${sets[position].secondaryNumber}kg"
-            }
-            ExerciseType.TIME->{
-                view.tvSets.text = "${sets[position].numberOfRepetitions}min.  ${sets[position].secondaryNumber}m"
-            }
+            tv_set_number.text = context.getString(R.string.which, (position + 1))
         }
-        view.tvSetNumber.text = (position + 1).toString() + "."
     }
 
     override fun getItemCount(): Int {

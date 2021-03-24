@@ -2,61 +2,75 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_chooseworkout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10sp"
     tools:context="view.mainactivity.fragments.workout_exercises.ChooseWorkoutTypeFragment">
-
-    <Spinner
-        android:id="@+id/spExerciseType"
+    <RelativeLayout
+        android:id="@+id/rl_chooseworkout_exercisetype"
         android:layout_width="0dp"
-        android:layout_height="20sp"
-
-        app:layout_constraintBottom_toTopOf="@+id/btnAddExerciseType"
+        android:layout_height="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_chooseworkout_addexercise"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.131"
+        android:background="@drawable/black_border">
+
+        <Spinner
+            android:id="@+id/sp_chooseworkout_exercisetype"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/tvQuestionExerciseType"
+        android:id="@+id/tv_chooseworkout_exercisetype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="24dp"
         android:lines="1"
-        android:text="Edzés típus"
+        android:text="@string/exercise_type"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/spExerciseType"
+        app:layout_constraintBottom_toTopOf="@+id/rl_chooseworkout_exercisetype"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/spExercise"
+    <RelativeLayout
+        android:id="@+id/rl_chooseworkout_exercise"
         android:layout_width="0dp"
-        android:layout_height="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddExerciseType"
+        android:layout_height="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_chooseworkout_addexercise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spExerciseType" />
+        app:layout_constraintTop_toBottomOf="@+id/rl_chooseworkout_exercisetype"
+        app:layout_constraintVertical_bias="0.217"
+        android:background="@drawable/black_border">
+
+        <Spinner
+            android:id="@+id/sp_chooseworkout_exercise"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/tvQuestionExercise"
+        android:id="@+id/tv_chooseworkout_exercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:lines="1"
-        android:text="Edzés"
+        android:text="@string/exercise"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/spExercise"
+        app:layout_constraintBottom_toTopOf="@+id/rl_chooseworkout_exercise"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAddExerciseType"
+        android:id="@+id/btn_chooseworkout_addexercise"
         android:layout_width="0dp"
         android:layout_height="91dp"
         android:background="@drawable/add_button_selector"

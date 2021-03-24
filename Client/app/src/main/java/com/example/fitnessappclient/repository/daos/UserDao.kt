@@ -5,6 +5,7 @@ import androidx.room.*
 import com.example.fitnessappclient.repository.entities.*
 import com.example.fitnessappclient.repository.relations.UserWithWorkouts
 import com.example.fitnessappclient.repository.relations.WorkoutExerciseAndExercise
+import com.example.fitnessappclient.repository.relations.WorkoutPlanWithWorkoutPlanExercises
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -70,6 +71,14 @@ interface UserDao {
     @Transaction
     @Query("select * from WORKOUTS where workoutDate = :date")
     fun getWorkoutsByDate(date:Date) : LiveData<List<Workout>>
+
+    @Transaction
+    @Query("select * from WORKOUT_PLANS")
+    fun getAllWorkoutPlans(): LiveData<List<WorkoutPlan>>
+
+    @Transaction
+    @Query("select * from WORKOUT_PLANS where workoutPlanId = :workoutPlanId")
+    fun getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId : Long): LiveData<WorkoutPlanWithWorkoutPlanExercises>
 
 //    @Transaction
 //    @Query("SQL UTASITAS")
