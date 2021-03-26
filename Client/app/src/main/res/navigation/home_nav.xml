@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_workout_list" >
         <action
             android:id="@+id/action_workoutListFragment_to_addWorkoutFragment"
-            app:destination="@id/addWorkoutFragment" />
+            app:destination="@id/addWorkoutFragment"
+            />
         <action
             android:id="@+id/action_workoutListFragment_to_workoutExerciseListFragment"
             app:destination="@id/workoutExerciseListFragment" />
@@ -59,7 +60,7 @@
     <fragment
         android:id="@+id/addNoWeightRepsWorkoutExerciseFragment"
         android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.AddNoWeightRepsWorkoutExerciseFragment"
-        android:label="Új gyakorlat"
+        android:label="Gyakorlat"
         tools:layout="@layout/fragment_add_no_weight_reps_workout_exercise" >
         <argument android:name="workoutId"
             app:argType="long" />
@@ -76,7 +77,7 @@
     <fragment
         android:id="@+id/chooseWorkoutTypeFragment"
         android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.ChooseWorkoutTypeFragment"
-        android:label="fragment_choose_workout_type"
+        android:label="Gyakorlat típusa"
         tools:layout="@layout/fragment_choose_workout_type" >
         <action
             android:id="@+id/action_chooseWorkoutTypeFragment_to_addRepsWorkoutExerciseFragment"
@@ -94,7 +95,7 @@
     <fragment
         android:id="@+id/addWeightRepsWorkoutExerciseFragment"
         android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.AddWeightRepsWorkoutExerciseFragment"
-        android:label="fragment_add_weight_reps_workout_exercise"
+        android:label="Gyakorlat"
         tools:layout="@layout/fragment_add_weight_reps_workout_exercise" >
         <action
             android:id="@+id/action_addWeightRepsWorkoutExerciseFragment_to_workoutExerciseListFragment"
@@ -111,7 +112,7 @@
     <fragment
         android:id="@+id/addTimeRepsWorkoutExerciseFragment"
         android:name="com.example.fitnessappclient.view.mainactivity.fragments.workout_exercises.AddTimeRepsWorkoutExerciseFragment"
-        android:label="fragment_add_time_reps_workout_exercise"
+        android:label="Gyakorlat"
         tools:layout="@layout/fragment_add_time_reps_workout_exercise" >
         <action
             android:id="@+id/action_addTimeRepsWorkoutExerciseFragment_to_workoutExerciseListFragment"
@@ -129,11 +130,122 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.fitnessappclient.view.mainactivity.fragments.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:label="Profil"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_workoutListFragment"
+            app:destination="@id/workoutListFragment"
+            />
+        <action
+            android:id="@+id/action_profileFragment_to_planFragment"
+            app:destination="@id/planFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_measurementSessionFragment"
+            app:destination="@id/measurementSessionFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_measurementHistoryFragment"
+            app:destination="@id/measurementHistoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/planFragment"
         android:name="com.example.fitnessappclient.view.mainactivity.fragments.plans.PlanFragment"
-        android:label="fragment_plan"
-        tools:layout="@layout/fragment_plan" />
+        android:label="Gyakorlatok és Edzéstervek"
+        tools:layout="@layout/fragment_plan" >
+        <action
+            android:id="@+id/action_planFragment_to_workoutListFragment"
+            app:destination="@id/workoutListFragment" />
+        <action
+            android:id="@+id/action_planFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_planFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
+        <action
+            android:id="@+id/action_planFragment_to_workoutPlanFragment"
+            app:destination="@id/workoutPlanFragment" />
+        <action
+            android:id="@+id/action_planFragment_to_measurementListFragment"
+            app:destination="@id/measurementListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseListFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.plans.ExerciseListFragment"
+        android:label="Gyakorlatok"
+        tools:layout="@layout/fragment_exercise_list" >
+        <action
+            android:id="@+id/action_exerciseListFragment_to_addNewExerciseFragment"
+            app:destination="@id/addNewExerciseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutPlanFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.plans.WorkoutPlanFragment"
+        android:label="Edzéstervek"
+        tools:layout="@layout/fragment_workout_plan" >
+        <action
+            android:id="@+id/action_workoutPlanFragment_to_addExerciseToWorkoutplanFragment"
+            app:destination="@id/addExerciseToWorkoutplanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewExerciseFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.plans.AddNewExerciseFragment"
+        android:label="Gyakorlat"
+        tools:layout="@layout/fragment_add_new_exercise" >
+        <action
+            android:id="@+id/action_addNewExerciseFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addExerciseToWorkoutplanFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.plans.AddExerciseToWorkoutplanFragment"
+        android:label="Edzés"
+        tools:layout="@layout/fragment_add_exercise_to_workoutplan" >
+        <action
+            android:id="@+id/action_addExerciseToWorkoutplanFragment_to_workoutPlanFragment"
+            app:destination="@id/workoutPlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.profile.RegisterFragment"
+        android:label="Regisztráció"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.profile.LoginFragment"
+        android:label="Bejelentkezés"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/measurementSessionFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.profile.MeasurementSessionFragment"
+        android:label="Testméretek felvétele"
+        tools:layout="@layout/fragment_measurement_session" />
+    <fragment
+        android:id="@+id/measurementHistoryFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.profile.MeasurementHistoryFragment"
+        android:label="Testméretek"
+        tools:layout="@layout/fragment_measurement_history" />
+    <fragment
+        android:id="@+id/measurementListFragment"
+        android:name="com.example.fitnessappclient.view.mainactivity.fragments.plans.MeasurementListFragment"
+        android:label="Testméretek"
+        tools:layout="@layout/fragment_measurement_list" />
 </navigation>

@@ -30,6 +30,14 @@ class Repository(private val userDao: UserDao) {
         userDao.insertSet(set)
     }
 
+    suspend fun setUserLoggedIn(userId : Long, loggedIn : Boolean){
+        userDao.setUserLoggedInById(userId, loggedIn)
+    }
+
+    fun getUserLoggedInByUserId(userId : Long):LiveData<Boolean>{
+        return userDao.getUserLoggedInByUserId(userId)
+    }
+
     fun getAllSetsByWorkoutExerciseId(workoutExerciseId : Long)  : LiveData<List<MySet>>{
         return userDao.getAllSetsByWorkoutExerciseId(workoutExerciseId)
     }
@@ -38,8 +46,20 @@ class Repository(private val userDao: UserDao) {
         return userDao.geWorkoutsByUserId(userId)
     }
 
+    fun getAllExercises() : LiveData<List<Exercise>>{
+        return userDao.getAllExercises()
+    }
+
+    fun getAllMeasurements() : LiveData<List<Measurement>>{
+        return userDao.getAllMeasurements()
+    }
+
     fun getAllExercisesByWorkoutId(workoutId : Long):LiveData<List<WorkoutExercise>>{
         return userDao.getAllExercisesByWorkoutId(workoutId)
+    }
+
+    fun getUserNameByUserId(userId : Long) : LiveData<String>{
+        return userDao.getUserNameByUserId(userId)
     }
 
     suspend fun updateUserComment(workoutExerciseId: Long, clientComment: String){

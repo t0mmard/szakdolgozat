@@ -1,35 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".view.mainactivity.fragments.plans.PlanFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Plan Fragment" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/bottomNavigationView"
-    android:layout_width="match_parent"
-    android:layout_height="75sp"
-    app:menu="@menu/bottom_nav_menu"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/bnv_plan_navmenu"
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <Button
+        android:id="@+id/btn_plan_addworkoutplan"
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        android:layout_marginTop="100dp"
+        android:text="@string/add_workout_plan"
+        app:layout_constraintTop_toBottomOf="@+id/btn_plan_addexercise"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/btn_plan_addexercise"
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        android:layout_marginTop="100dp"
+        android:text="@string/add_exercise"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/btn_plan_addmeasurement"
+        android:layout_width="0dp"
+        android:layout_height="75sp"
+        android:layout_marginTop="100dp"
+        android:text="@string/add_measurement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_plan_addworkoutplan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

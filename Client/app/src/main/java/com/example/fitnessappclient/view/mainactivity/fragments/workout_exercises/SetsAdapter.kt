@@ -18,6 +18,13 @@ class SetsAdapter(val exerciseType: ExerciseType): RecyclerView.Adapter<SetsAdap
 
     inner class SetViewHolder(itemView : View): RecyclerView.ViewHolder(itemView)
 
+    init{
+        setHasStableIds(true)
+    }
+
+    override fun getItemId(position: Int): Long = sets[position].setId
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SetViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_set, parent, false)

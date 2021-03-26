@@ -37,8 +37,29 @@ interface UserDao {
     @Delete
     suspend fun removeSet(set: MySet)
 
+    @Transaction
+    @Query("select * from MEASURMENTS")
+    fun getAllMeasurements() : LiveData<List<Measurement>>
+
+    @Transaction
+    @Query("select * from EXERCISES")
+    fun getAllExercises() : LiveData<List<Exercise>>
+
+    @Transaction
+    @Query("update USERS set loggedIn = :loggedIn where userId = :userId")
+    suspend fun setUserLoggedInById(userId: Long, loggedIn : Boolean)
+
+    @Transaction
     @Query("update WORKOUT_EXERCISES set clientComment = :clientComment where workoutExerciseId = :workoutExerciseId")
     suspend fun updateUserComment(workoutExerciseId: Long, clientComment: String)
+
+    @Transaction
+    @Query("select lastName from USERS where userId = :userId")
+    fun getUserNameByUserId(userId : Long) : LiveData<String>
+
+    @Transaction
+    @Query("select loggedIn from USERS where userId = :userId")
+    fun getUserLoggedInByUserId(userId : Long) : LiveData<Boolean>
 
     @Transaction
     @Query("select * from WORKOUT_EXERCISES where workoutId = :workoutId")

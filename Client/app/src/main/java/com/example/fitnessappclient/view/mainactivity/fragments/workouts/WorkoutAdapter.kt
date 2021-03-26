@@ -23,7 +23,7 @@ class WorkoutAdapter( private val myListener: WorkoutRecyclerViewListener) : Rec
         setHasStableIds(true)
     }
 
-    override fun getItemId(position: Int): Long = position.toLong()
+    override fun getItemId(position: Int): Long = workouts[position].workoutId
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,6 +41,8 @@ class WorkoutAdapter( private val myListener: WorkoutRecyclerViewListener) : Rec
             setOnClickListener{
                 myListener.myOnClickListener(workouts[position])
             }
+
+            (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 0
             if(workouts.lastIndex == position){
                 (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 1000
             }
@@ -58,7 +60,7 @@ class WorkoutAdapter( private val myListener: WorkoutRecyclerViewListener) : Rec
 
     fun removeAt(position: Int, workoutViewModel: WorkoutViewModel){
         workoutViewModel.removeWorkout(workouts[position])
-        notifyItemRemoved(position)
+        notifyDataSetChanged()
     }
 
 }

@@ -1,10 +1,13 @@
 package com.example.fitnessappclient.view.mainactivity.fragments.workouts
 
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,9 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessappclient.R
 import com.example.fitnessappclient.repository.entities.Workout
 import com.example.fitnessappclient.view.mainactivity.MainActivity
-import com.example.fitnessappclient.view.mainactivity.fragments.plans.PlanFragment
-import com.example.fitnessappclient.view.mainactivity.fragments.profile.ProfileFragment
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
+import kotlinx.android.synthetic.main.fragment_plan.*
 import kotlinx.android.synthetic.main.fragment_workout_list.view.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -41,7 +43,7 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
         workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
 
         //recyclerviewinit, mindig kell, ha dátumot változtatunk, notifyDataChange-re nem bindolja újra az elemeket
-        val adapter = addRecyclerViewAdapter(view,main,true)
+        addRecyclerViewAdapter(view,main,true)
 
 
         setDate(view, main)
@@ -56,11 +58,12 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
     //RecyclerViewAdapter, new instance, new data with selectedDate
 
 
-    private fun addRecyclerViewAdapter(view : View, main : MainActivity, isInit: Boolean) : WorkoutAdapter{
+    private fun addRecyclerViewAdapter(view : View, main : MainActivity, isInit: Boolean){
 
         //RecyclerView init
         val adapter = WorkoutAdapter(this)
         view.rv_workoutlist.layoutManager = LinearLayoutManager(requireContext())
+        view.rv_workoutlist.adapter = adapter
 
         workoutViewModel.getWorkoutsByDate(java.sql.Date.valueOf(main.selectedDate.toString())).observe(viewLifecycleOwner, Observer { workouts ->
             adapter.setData(workouts)
@@ -80,10 +83,6 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
             itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
             itemTouchHelper.attachToRecyclerView(view.rv_workoutlist)
         }
-        view.rv_workoutlist.adapter = adapter
-
-        return adapter
-
     }
 
     //swipe to delete for recyclerview
@@ -91,6 +90,25 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
         return object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder ): Boolean {
                 return false
+            }
+
+            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
+                dX: Float,  dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+//                val bg = ColorDrawable(Color.RED)
+//                val itemView = viewHolder.itemView
+//                bg.setBounds(itemView.left + itemView.paddingLeft, itemView.top + itemView.paddingTop,
+//                    itemView.right - itemView.paddingRight,itemView.bottom - itemView.paddingBottom)
+//                bg.draw(c)
+                val itemView = viewHolder.itemView
+                val trashIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_delete_24 ) as Drawable
+                trashIcon.setTint(Color.RED)
+                trashIcon.setBounds(itemView.left + itemView.paddingLeft, itemView.top + itemView.paddingTop,
+                    itemView.left + itemView.paddingLeft + ((itemView.bottom - itemView.paddingBottom) - (itemView.top + itemView.paddingTop)), //jobb oldal a baltól olyan távol mint a teteje az aljától
+                    itemView.bottom - itemView.paddingBottom)
+                trashIcon.draw(c)
+
+                super.onChildDraw( c,recyclerView,viewHolder, dX, dY, actionState, isCurrentlyActive)
+
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -137,16 +155,22 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
         view.bnv_workoutlist_navmenu.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home ->{
+                    it.isCheckable = true
+                    return@setOnNavigationItemSelectedListener true
                 }
-                R.id.exercises ->{
+                R.id.plan ->{
+                    it.isCheckable = false
+                    view.bnv_workoutlist_navmenu.selectedItemId = R.id.home
                     findNavController().navigate(R.id.action_workoutListFragment_to_planFragment)
                 }
                 R.id.profile -> {
+                    it.isChecked = false
+                    view.bnv_workoutlist_navmenu.selectedItemId = R.id.home
                     findNavController().navigate(R.id.action_workoutListFragment_to_profileFragment)
                 }
                 else ->{}
             }
-            true
+            false
         }
     }
 

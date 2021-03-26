@@ -28,6 +28,14 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
         return repository.getWorkoutsByDate(date)
     }
 
+    fun getAllExercises() : LiveData<List<Exercise>>{
+        return repository.getAllExercises()
+    }
+
+    fun getAllMeasurements() : LiveData<List<Measurement>>{
+        return repository.getAllMeasurements()
+    }
+
     fun addWorkout(workout: Workout): LiveData<Long>{
         var result = MutableLiveData<Long>()
         viewModelScope.launch {

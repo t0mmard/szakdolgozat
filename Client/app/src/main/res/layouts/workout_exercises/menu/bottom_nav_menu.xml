@@ -2,14 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:title="Otthon"
-        android:icon="@drawable/ic_baseline_home_24"/>
+        android:title="@string/home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:checkable="true"/>
     <item
         android:id="@+id/profile"
-        android:title="Profil"
-        android:icon="@drawable/ic_baseline_person_24"/>
+        android:title="@string/profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:checkable="true"/>
     <item
-        android:id="@+id/exercises"
-        android:title="Edzéstervek/Gyakorlatok"
-        android:icon="@drawable/ic_sports"/>
+        android:id="@+id/plan"
+        android:title="@string/plan"
+        android:icon="@drawable/ic_sports"
+        android:checkable="true"/>
 </menu>

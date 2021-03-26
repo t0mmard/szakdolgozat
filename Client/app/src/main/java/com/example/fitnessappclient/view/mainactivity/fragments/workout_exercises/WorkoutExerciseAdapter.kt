@@ -16,6 +16,12 @@ class WorkoutExerciseAdapter(private val myListener: WorkoutExerciseRecyclerView
 
     inner class WorkoutExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+    init{
+        setHasStableIds(true)
+    }
+
+    override fun getItemId(position: Int): Long = workoutExercises[position].workoutExercise.workoutExerciseId
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -35,6 +41,11 @@ class WorkoutExerciseAdapter(private val myListener: WorkoutExerciseRecyclerView
             }
             tv_exercise_number.text = context.getString(R.string.which, position + 1)
             tv_exercise_name.text = workoutExercises[position].exercise.exerciseName
+
+            (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 0
+            if(itemCount-1 == position){
+                (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 1000
+            }
         }
     }
 

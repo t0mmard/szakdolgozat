@@ -23,4 +23,37 @@
     <string name="tomorrow">Holnap</string>
     <string name="yesterday">Tegnap</string>
 
+    <string name="home">Otthon</string>
+    <string name="profile">Profil</string>
+    <string name="plan">Tervek</string>
+
+    <string name="add_exercise">Gyakorlatok</string>
+    <string name="add_workout_plan">Edzéstervek</string>
+    <string name="add_measurement">Testméretek</string>
+
+    <string name="not_logged_in">Nem vagy bejelentkezve</string>
+    <string name="register">Regisztráció</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="login_question">Már van fiókod?</string>
+
+    <string name="logged_in">Be vagy jelentkezve</string>
+    <string name="logged_in_user">Felhasználó neve: %1$s</string>
+    <string name="logout">Kijelentkezés</string>
+
+    <string name="user_weight">Súly: %1$skg</string>
+    <string name="user_weight_goal">Cél: %1$skg</string>
+    <string name="user_measurement_session">Új adatok felvétele</string>
+    <string name="user_measurement_old_session">Régi adatok</string>
+    <string name="user_measurement_title">Felhasználó mérései</string>
+
+    <string name="coach_tile_name">Edzők és kliensek</string>
+    <string name="find_coach">Edző keresése</string>
+    <string name="my_coach">Edződ: %1$s</string>
+    <string name="my_coachees">Kliensek</string>
+    <string name="number_of_clients">Kliensek száma: %1$d</string>
+
+    <string name="username">E-mail cím</string>
+    <string name="password">Jelszó</string>
+    <string name="registration_question">Még nincs fiókod?</string>
+
 </resources>
