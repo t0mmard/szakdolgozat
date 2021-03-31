@@ -3,19 +3,22 @@ package com.example.fitnessappclient.repository
 import androidx.lifecycle.LiveData
 import com.example.fitnessappclient.repository.daos.UserDao
 import com.example.fitnessappclient.repository.entities.*
-import com.example.fitnessappclient.repository.relations.UserWithWorkouts
-import com.example.fitnessappclient.repository.relations.WorkoutExerciseAndExercise
-import com.example.fitnessappclient.repository.relations.WorkoutPlanWithWorkoutPlanExercises
+import com.example.fitnessappclient.repository.relations.*
 import java.util.*
 
 class Repository(private val userDao: UserDao) {
     val allUser : LiveData<List<User>> = userDao.getUsers()
+
     suspend fun insertUser(user: User){
         userDao.insertUser(user)
     }
 
     suspend fun insertWorkout(workout: Workout) : Long{
         return userDao.insertWorkout(workout)
+    }
+
+    suspend fun insertUserMeasurement(userMeasurement: UserMeasurement){
+        userDao.insertUserMeasurement(userMeasurement)
     }
 
     suspend fun insertExercise(exercise: Exercise){
@@ -26,16 +29,52 @@ class Repository(private val userDao: UserDao) {
         return userDao.insertWorkoutExercise(workoutExercise)
     }
 
+    suspend fun insertMeasurement(measurement: Measurement){
+        userDao.insertMeasurement(measurement)
+    }
+
     suspend fun insertSet(set: MySet){
         userDao.insertSet(set)
+    }
+
+    suspend fun insertMeasuringSession(measuringSession: MeasuringSession) : Long{
+        return userDao.insertMeasuringSession(measuringSession)
+    }
+
+    fun getAllWorkoutPlanExercisesAndExerciseByWorkoutPlanId(workoutPlanId: Long) : LiveData<List<WorkoutPlanExerciseAndExercise>>{
+        return userDao.getAllWorkoutPlanExercisesAndExerciseByWorkoutPlanId(workoutPlanId)
     }
 
     suspend fun setUserLoggedIn(userId : Long, loggedIn : Boolean){
         userDao.setUserLoggedInById(userId, loggedIn)
     }
 
+    suspend fun insertWorkoutPlan(workoutPlan: WorkoutPlan) : Long{
+       return userDao.insertWorkoutPlan(workoutPlan)
+    }
+
+    suspend fun insertWorkoutPlanExercise(workoutPlanExercises: WorkoutPlanExercises) : Long{
+        return userDao.insertWorkoutPlanExercise(workoutPlanExercises)
+    }
+
+    suspend fun removeWorkoutPlanExercise(workoutPlanExercises: WorkoutPlanExercises){
+        return userDao.removeWorkoutPlanExercise(workoutPlanExercises)
+    }
+
+    suspend fun removeWorkoutPlan(workoutPlan: WorkoutPlan){
+        userDao.removeWorkoutPlan(workoutPlan)
+    }
+
     fun getUserLoggedInByUserId(userId : Long):LiveData<Boolean>{
         return userDao.getUserLoggedInByUserId(userId)
+    }
+
+    fun getUserMeasurementsBySessionId(sessionId : Long) : LiveData<List<UserMeasurementAndMeasurement>>{
+        return userDao.getUserMeasurementsBySessionId(sessionId)
+    }
+
+    suspend fun removeUserMeasurement(userMeasurement: UserMeasurement){
+        userDao.removeUserMeasurement(userMeasurement)
     }
 
     fun getAllSetsByWorkoutExerciseId(workoutExerciseId : Long)  : LiveData<List<MySet>>{
@@ -44,6 +83,42 @@ class Repository(private val userDao: UserDao) {
 
     fun getAllWorkoutsByUserId(userId : Long):LiveData<List<Workout>>{
         return userDao.geWorkoutsByUserId(userId)
+    }
+
+    suspend fun updateUserWeight(sessionId: Long, weight: Short){
+        userDao.updateUserWeight(sessionId, weight)
+    }
+
+    suspend fun removeMeasuringSession(measuringSession: MeasuringSession){
+        userDao.removeMeasuringSession(measuringSession)
+    }
+
+    suspend fun setGoalWeightByUserId(userId: Long, goalWeight : Short){
+        userDao.setGoalWeightByUserId(userId, goalWeight)
+    }
+
+    fun getGoalWeightByUserId(userId: Long) : LiveData<Short>{
+        return userDao.getGoalWeightByUserId(userId)
+    }
+
+    fun getAllExerciseCategories() : LiveData<List<ExerciseCategory>>{
+        return userDao.getAllExerciseCategories()
+    }
+
+    suspend fun removeExerciseCategory(exerciseCategory: ExerciseCategory){
+        userDao.removeExerciseCategory(exerciseCategory)
+    }
+
+    suspend fun insertExerciseCategory(exerciseCategory: ExerciseCategory){
+        userDao.insertExerciseCategory(exerciseCategory)
+    }
+
+    fun getMostRecentMeasuringSession() : LiveData<MeasuringSession>{
+        return userDao.getMostRecentMeasuringSession()
+    }
+
+    fun getMeasuringSessions() : LiveData<List<MeasuringSession>>{
+        return userDao.getMeasuringSessions()
     }
 
     fun getAllExercises() : LiveData<List<Exercise>>{
@@ -88,6 +163,14 @@ class Repository(private val userDao: UserDao) {
 
     suspend fun removeWorkoutExercise(workoutExercise: WorkoutExercise){
         userDao.removeWorkoutExercise(workoutExercise)
+    }
+
+    suspend fun removeExercise(exercise: Exercise){
+        userDao.removeExercise(exercise)
+    }
+
+    suspend fun removeMeasurement(measurement: Measurement){
+        userDao.removeMeasurement(measurement)
     }
 
     fun getWorkoutsByDate(date: Date) : LiveData<List<Workout>>{

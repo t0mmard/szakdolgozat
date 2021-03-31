@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10sp"
-    tools:context="view.mainactivity.fragments.workout_exercises.AddWeightRepsWorkoutExerciseFragment">
+    tools:context=".view.mainactivity.fragments.workouts.workout_exercises.AddWeightRepsWorkoutExerciseFragment">
 
 
     <TextView
@@ -47,6 +47,7 @@
         android:layout_marginTop="116dp"
         android:gravity="center"
         android:inputType="number"
+        android:maxLength="3"
         android:text="0"
         app:layout_constraintEnd_toStartOf="@+id/btn_reps_plus"
         app:layout_constraintHorizontal_bias="0.5"
@@ -60,6 +61,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:inputType="number"
+        android:maxLength="3"
         android:text="0"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toStartOf="@+id/btn_weight_plus"

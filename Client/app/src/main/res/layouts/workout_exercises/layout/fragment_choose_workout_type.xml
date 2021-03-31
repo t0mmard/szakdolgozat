@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10sp"
-    tools:context="view.mainactivity.fragments.workout_exercises.ChooseWorkoutTypeFragment">
+    tools:context=".view.mainactivity.fragments.workouts.workout_exercises.ChooseWorkoutTypeFragment">
+
     <RelativeLayout
         android:id="@+id/rl_chooseworkout_exercisetype"
         android:layout_width="0dp"

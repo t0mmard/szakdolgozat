@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="100sp"
     android:background="@drawable/menu_items_background"
-    tools:context=".view.mainactivity.fragments.profile.LoggedInFragment">
+    tools:context=".view.mainactivity.fragments.profile.login.LoggedInFragment">
 
     <TextView
         android:id="@+id/tv_loggedin_title"

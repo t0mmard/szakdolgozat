@@ -5,7 +5,7 @@
     android:id="@+id/cl_not_loggedin"
     android:layout_width="match_parent"
     android:layout_height="200sp"
-    tools:context=".view.mainactivity.fragments.profile.NotLoggedInTileFragment"
+    tools:context=".view.mainactivity.fragments.profile.login.NotLoggedInTileFragment"
     android:background="@drawable/menu_items_background">
 
     <TextView

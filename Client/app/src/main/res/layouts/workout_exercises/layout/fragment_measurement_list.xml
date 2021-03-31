@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="view.mainactivity.fragments.plans.MeasurementListFragment">
+    tools:context=".view.mainactivity.fragments.plans.measurement.MeasurementListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_measurements_list"

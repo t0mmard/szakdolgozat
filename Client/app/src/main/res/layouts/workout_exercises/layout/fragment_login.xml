@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.mainactivity.fragments.profile.LoginFragment">
+    tools:context=".view.mainactivity.fragments.profile.login.LoginFragment">
 
     <TextView
         android:id="@+id/tv_login_username"

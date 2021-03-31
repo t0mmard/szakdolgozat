@@ -8,9 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.fitnessappclient.repository.LocalDatabase
 import com.example.fitnessappclient.repository.Repository
 import com.example.fitnessappclient.repository.entities.*
+import com.example.fitnessappclient.repository.relations.UserMeasurementAndMeasurement
 import com.example.fitnessappclient.repository.relations.WorkoutExerciseAndExercise
+import com.example.fitnessappclient.repository.relations.WorkoutPlanExerciseAndExercise
 import com.example.fitnessappclient.repository.relations.WorkoutPlanWithWorkoutPlanExercises
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class WorkoutViewModel(application: Application) : AndroidViewModel(application) {
@@ -28,12 +31,64 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
         return repository.getWorkoutsByDate(date)
     }
 
+    fun insertUserMeasurement(userMeasurement: UserMeasurement){
+        viewModelScope.launch {
+            repository.insertUserMeasurement(userMeasurement)
+        }
+    }
+
+    fun getUserMeasurementsBySessionId(sessionId : Long) : LiveData<List<UserMeasurementAndMeasurement>>{
+        return repository.getUserMeasurementsBySessionId(sessionId)
+    }
+
+    fun removeUserMeasurement(userMeasurement: UserMeasurement){
+        viewModelScope.launch {
+            repository.removeUserMeasurement(userMeasurement)
+        }
+    }
+
+    fun insertMeasuringSession(measuringSession: MeasuringSession) : LiveData<Long>{
+        val result = MutableLiveData<Long>()
+        viewModelScope.launch {
+            val resultLong = repository.insertMeasuringSession(measuringSession)
+            result.postValue(resultLong)
+        }
+        return result
+    }
+
+   fun updateUserWeight(sessionId: Long, weight: Short){
+       viewModelScope.launch {
+           repository.updateUserWeight(sessionId, weight)
+       }
+    }
+
+    fun getAllExerciseCategories() : LiveData<List<ExerciseCategory>>{
+        return repository.getAllExerciseCategories()
+    }
+
+    fun removeExerciseCategory(exerciseCategory: ExerciseCategory){
+        viewModelScope.launch {
+            repository.removeExerciseCategory(exerciseCategory)
+        }
+
+    }
+
+    fun insertExerciseCategory(exerciseCategory: ExerciseCategory){
+        viewModelScope.launch {
+            repository.insertExerciseCategory(exerciseCategory)
+        }
+    }
+
     fun getAllExercises() : LiveData<List<Exercise>>{
         return repository.getAllExercises()
     }
 
     fun getAllMeasurements() : LiveData<List<Measurement>>{
         return repository.getAllMeasurements()
+    }
+
+    fun getAllWorkoutPlanExercisesAndExerciseByWorkoutPlanId(workoutPlanId: Long) : LiveData<List<WorkoutPlanExerciseAndExercise>>{
+        return repository.getAllWorkoutPlanExercisesAndExerciseByWorkoutPlanId(workoutPlanId)
     }
 
     fun addWorkout(workout: Workout): LiveData<Long>{
@@ -43,6 +98,50 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
             result.postValue(resultLong)
         }
         return result
+    }
+
+    fun removeMeasuringSession(measuringSession: MeasuringSession){
+        viewModelScope.launch {
+            repository.removeMeasuringSession(measuringSession)
+        }
+    }
+
+    fun getMostRecentMeasuringSession() : LiveData<MeasuringSession>{
+        return repository.getMostRecentMeasuringSession()
+    }
+
+    fun getMeasuringSessions() : LiveData<List<MeasuringSession>>{
+        return repository.getMeasuringSessions()
+    }
+
+    fun insertWorkoutPlanExercise(workoutPlanExercises: WorkoutPlanExercises) : LiveData<Long>{
+        var result = MutableLiveData<Long>()
+        viewModelScope.launch {
+            val resultLong = repository.insertWorkoutPlanExercise(workoutPlanExercises)
+            result.postValue(resultLong)
+        }
+        return result
+    }
+
+    fun removeWorkoutPlanExercise(workoutPlanExercises: WorkoutPlanExercises){
+        viewModelScope.launch {
+            repository.removeWorkoutPlanExercise(workoutPlanExercises)
+        }
+    }
+
+    fun insertWorkoutPlan(workoutPlan: WorkoutPlan) : LiveData<Long>{
+        var result = MutableLiveData<Long>()
+        viewModelScope.launch {
+            val resultLong = repository.insertWorkoutPlan(workoutPlan)
+            result.postValue(resultLong)
+        }
+        return result
+    }
+
+    fun removeWorkoutPlan(workoutPlan: WorkoutPlan){
+        viewModelScope.launch {
+            repository.removeWorkoutPlan(workoutPlan)
+        }
     }
 
     fun getAllWorkoutExercisesByWorkoutId(workoutId : Long) : LiveData<List<WorkoutExercise>>{
@@ -57,6 +156,25 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
 
     fun getAllWorkoutExercisesAndExerciseByWorkoutId(workoutId : Long) : LiveData<List<WorkoutExerciseAndExercise>>{
         return repository.getAllWorkoutExercisesAndExerciseByWorkoutId(workoutId)
+    }
+
+    fun removeExercise(exercise: Exercise){
+        viewModelScope.launch {
+            repository.removeExercise(exercise)
+        }
+    }
+
+
+    fun insertExercise(exercise: Exercise){
+        viewModelScope.launch {
+            repository.insertExercise(exercise)
+        }
+    }
+
+    fun insertMeasurement(measurement: Measurement){
+        viewModelScope.launch {
+            repository.insertMeasurement(measurement)
+        }
     }
 
     fun getAllExercisesByWorkoutType(workoutType: ExerciseType) : LiveData<List<Exercise>>{
@@ -101,6 +219,12 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
     fun removeWorkoutExercise(workoutExercise: WorkoutExercise){
         viewModelScope.launch {
             repository.removeWorkoutExercise(workoutExercise)
+        }
+    }
+
+    fun removeMeasurement(measurement: Measurement){
+        viewModelScope.launch{
+            repository.removeMeasurement(measurement)
         }
     }
 

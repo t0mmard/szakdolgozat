@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.mainactivity.fragments.plans.WorkoutPlanFragment">
+    tools:context=".view.mainactivity.fragments.plans.workoutplan.WorkoutPlanFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_workoutplan_list"
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabw_orkoutplan_addworkoutplan"
+        android:id="@+id/fab_workoutplan_addworkoutplan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

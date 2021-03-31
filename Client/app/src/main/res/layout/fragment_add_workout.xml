@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10sp"
-    tools:context=".view.mainactivity.fragments.workouts.AddWorkoutFragment">
+    tools:context=".view.mainactivity.fragments.workouts.workout_exercises.AddWorkoutFragment">
 
     <TextView
         android:id="@+id/tv_addworkout_question"

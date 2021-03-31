@@ -9,6 +9,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.fitnessappclient.R
+import com.example.fitnessappclient.repository.entities.User
+import com.example.fitnessappclient.repository.retrofit.MyRetrofit
 import com.example.fitnessappclient.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDate
@@ -16,7 +18,6 @@ import java.util.*
 import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
-
 
     var selectedDate = LocalDate.now()
     var  isUserLoggedIn = false
@@ -33,13 +34,38 @@ class MainActivity : AppCompatActivity() {
             R.id.workoutListFragment
         ).build()
 
+        //kapcsolat teszt
+        val rf = MyRetrofit("admin","admin")
+        rf.getAnswer().observe(this, androidx.lifecycle.Observer {
+            println(it.string)
+            println(it.stringArray)
+        })
+
+        deleteDatabase("local_database")
+
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-//        val loggedInLiveData = userViewModel.getUserLoggedInByUserId(currentUser)
-//        loggedInLiveData.observe(this, androidx.lifecycle.Observer { loggedIn ->
-//            loggedInLiveData.removeObservers(this)
-//            isUserLoggedIn = loggedIn
-//        })
+        val loggedInLiveData = userViewModel.getUserLoggedInByUserId(currentUser)
+        loggedInLiveData.observe(this, androidx.lifecycle.Observer { loggedIn ->
+            loggedInLiveData.removeObservers(this)
+            if(loggedIn == null){
+                userViewModel.addUser(
+                    User(
+                        0,
+                        "none",
+                        "defaultUser",
+                        "none",
+                        true,
+                        0,
+                        false,
+                        Date()
+                    )
+                )
+            }
+            else{
+                isUserLoggedIn = loggedIn
+            }
+        })
 
         setupActionBarWithNavController(findNavController(R.id.fragment_mainactivity),appBarConfiguration)
 

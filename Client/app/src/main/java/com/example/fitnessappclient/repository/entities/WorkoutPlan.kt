@@ -10,5 +10,6 @@ data class WorkoutPlan (
     val workoutplanName: String,
     val workoutPlanDescripton: String,
     val modifiable: Boolean,
-    val creatorId: Long
+    val creatorId: Long,
+    val deletableByUser: Boolean
 )

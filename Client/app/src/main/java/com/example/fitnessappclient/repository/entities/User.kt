@@ -14,6 +14,7 @@ data class User(
     val lastName: String,
     val passwordHash: String?,
     val passwordSaved: Boolean,
+    val goalWeight: Short?,
     val loggedIn: Boolean,
     val synchronizationDate: Date
 )

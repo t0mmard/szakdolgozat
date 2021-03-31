@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400sp"
-    tools:context=".view.mainactivity.fragments.profile.CoachTileFragment"
-    android:background="@drawable/menu_items_background">
+    android:layout_height="200sp"
+    android:background="@drawable/menu_items_background"
+    tools:context=".view.mainactivity.fragments.profile.coach.CoachTileFragment">
 
     <TextView
         android:id="@+id/tv_coachtile_title"
@@ -56,7 +56,7 @@
         android:id="@+id/btn_coachtile_mycoachees"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/periwinkle_trans"
         android:text="@string/my_coachees"

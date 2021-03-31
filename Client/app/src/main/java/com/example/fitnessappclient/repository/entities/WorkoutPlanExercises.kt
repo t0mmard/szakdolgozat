@@ -22,13 +22,10 @@ import androidx.room.PrimaryKey
             onDelete = androidx.room.ForeignKey.CASCADE
         )
     ]
-    ,
-    indices = [Index(value = ["setId"], unique = true)]
 )
 data class WorkoutPlanExercises(
     @PrimaryKey(autoGenerate = true)
     val workoutPlanExerciseId: Long,
     val workoutPlanId: Long,
-    val exerciseId: Long,
-    val setId: Long
+    val exerciseId: Long
 )

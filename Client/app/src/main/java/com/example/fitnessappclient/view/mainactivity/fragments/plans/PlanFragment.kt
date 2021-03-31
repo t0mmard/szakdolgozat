@@ -41,6 +41,10 @@ class PlanFragment : Fragment() {
             findNavController().navigate(R.id.action_planFragment_to_measurementListFragment)
         }
 
+        view.btn_plan_addcategories.setOnClickListener {
+            findNavController().navigate(R.id.action_planFragment_to_exerciseCategoriesListFragment)
+        }
+
     }
 
     private fun initNavMenu(view : View){

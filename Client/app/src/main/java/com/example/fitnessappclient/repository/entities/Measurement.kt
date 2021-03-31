@@ -10,5 +10,6 @@ data class Measurement (
     @PrimaryKey(autoGenerate = true)
     val measurementId: Long,
     val bodyPart: String,
-    val creatorId: Long
+    val creatorId: Long,
+    val deletableByUser: Boolean
 )

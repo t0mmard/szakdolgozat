@@ -9,6 +9,10 @@ import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import com.example.fitnessappclient.*
 import com.example.fitnessappclient.view.mainactivity.MainActivity
+import com.example.fitnessappclient.view.mainactivity.fragments.profile.coach.CoachTileFragment
+import com.example.fitnessappclient.view.mainactivity.fragments.profile.login.LoggedInTileFragment
+import com.example.fitnessappclient.view.mainactivity.fragments.profile.login.NotLoggedInTileFragment
+import com.example.fitnessappclient.view.mainactivity.fragments.profile.measurement.MeasurementsTileFragment
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.fragment_workout_list.view.*
 
@@ -41,7 +45,7 @@ class ProfileFragment : Fragment() {
                 replace(R.id.fragment_profile_login, NotLoggedInTileFragment())
             }
 
-            replace(R.id.fragment_profile_measurements, MeasurementsFragment())
+            replace(R.id.fragment_profile_measurements, MeasurementsTileFragment())
             replace(R.id.fragment_profile_coach, CoachTileFragment())
         }
     }

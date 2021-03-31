@@ -25,6 +25,16 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun getGoalWeightByUserId(userId: Long) : LiveData<Short>{
+        return repository.getGoalWeightByUserId(userId)
+    }
+
+    fun setGoalWeightByUserId(userId: Long, goalWeight : Short){
+        viewModelScope.launch {
+            repository.setGoalWeightByUserId(userId, goalWeight)
+        }
+    }
+
     fun isLoginSuccessful(userName : String, password: String) : Boolean{
         //TODO : bejelentkezés szerverről
         return true

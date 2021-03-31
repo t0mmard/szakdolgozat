@@ -6,7 +6,7 @@
     android:id="@+id/cl_workoutlist_outer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.mainactivity.fragments.workouts.WorkoutListFragment">
+    tools:context=".view.mainactivity.fragments.workouts.workouthome.WorkoutListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_workoutlist_inner"
