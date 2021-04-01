@@ -27,7 +27,7 @@ class RegisterFragment : Fragment() {
     private fun initButtons(view: View){
         view.btn_register_register.setOnClickListener {
             if (checkEmailAndPassword(view.et_register_username.text.toString(), view.et_register_password.text.toString() ) )
-                register()
+                register(view)
         }
 
         view.btn_register_tologin.setOnClickListener {
@@ -35,8 +35,10 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun register(){
-        Toast.makeText(requireContext(),"Itt lesz a regisztráció", Toast.LENGTH_SHORT).show()
+    private fun register(view:View){
+        val name     = view.et_register_username
+        val password = view.et_register_password
+
     }
 
     private fun checkEmailAndPassword(email : String, password : String) : Boolean{

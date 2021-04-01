@@ -9,10 +9,12 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MyRetrofit(val username : String, val password : String) {
+class MyRetrofit() {
 
-    private val service : ServerService
-    private val client : OkHttpClient
+    var username = ""
+    var password = ""
+    private var service : ServerService
+    private var client : OkHttpClient
 
     init {
         //autentikáció elkapására
@@ -30,28 +32,49 @@ class MyRetrofit(val username : String, val password : String) {
         service = retrofit.create(ServerService::class.java)
     }
 
-    fun getAnswer() : LiveData<Random> {
-        val answer = service.getRandom()
+    fun login(username : String, password : String ){
+        val loginResponse = service.login(AuthenticationData(username,password))
 
-        var toReturn = MutableLiveData<Random>()
+        loginResponse.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                println(response)
 
-        answer.enqueue( object : Callback<Random> {
-            override fun onResponse(call: Call<Random>, response: Response<Random>) {
-                if(!response.isSuccessful){
-                    toReturn.postValue(Random("notSuccessful", listOf()))
-                }
-                val random = response.body()
-                if(random != null) {
-                    toReturn.postValue(random!!)
-                    println(random.string)
+                val loginResponse = response.body()
+                if (loginResponse != null) {
+                    println(loginResponse.response)
                 }
             }
 
-            override fun onFailure(call: Call<Random>, t: Throwable) {
-                toReturn.postValue(Random(t.message!!, listOf()))
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                println("nem elérhető a szerver")
             }
         })
-
-        return toReturn
     }
 }
+
+
+
+//fun getAnswer() : LiveData<Random> {
+//    val answer = service.getRandom()
+//
+//    var toReturn = MutableLiveData<Random>()
+//
+//    answer.enqueue( object : Callback<Random> {
+//        override fun onResponse(call: Call<Random>, response: Response<Random>) {
+//            if(!response.isSuccessful){
+//                toReturn.postValue(Random("notSuccessful", listOf()))
+//            }
+//            val random = response.body()
+//            if(random != null) {
+//                toReturn.postValue(random!!)
+//                println(random.string)
+//            }
+//        }
+//
+//        override fun onFailure(call: Call<Random>, t: Throwable) {
+//            toReturn.postValue(Random(t.message!!, listOf()))
+//        }
+//    })
+//
+//    return toReturn
+//}

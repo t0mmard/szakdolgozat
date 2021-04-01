@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     var selectedDate = LocalDate.now()
     var  isUserLoggedIn = false
     var currentUser = 1L
+    val retrofitClient = MyRetrofit()
     lateinit var userViewModel : UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,12 +35,6 @@ class MainActivity : AppCompatActivity() {
             R.id.workoutListFragment
         ).build()
 
-        //kapcsolat teszt
-        val rf = MyRetrofit("admin","admin")
-        rf.getAnswer().observe(this, androidx.lifecycle.Observer {
-            println(it.string)
-            println(it.stringArray)
-        })
 
         deleteDatabase("local_database")
 

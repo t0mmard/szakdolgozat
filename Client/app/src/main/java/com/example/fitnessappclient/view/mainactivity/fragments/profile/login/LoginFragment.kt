@@ -42,17 +42,18 @@ class LoginFragment : Fragment() {
     }
 
     private fun login(view : View){
-        val userName = view.et_login_username.text.toString()
+        val username = view.et_login_username.text.toString()
         val password = view.et_login_password.text.toString()
-        println(userName)
-        println(password)
-        if(checkEmailAndPassword(userName, password))
-        if(userViewModel.isLoginSuccessful(userName, password)){
+        if(checkEmailAndPassword(username, password)) {
             val parentActivity = activity as MainActivity
-            parentActivity.isUserLoggedIn = true
-            userViewModel.setUserLoggedIn(parentActivity.currentUser, true)
-            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+            parentActivity.retrofitClient.login(username,password)
         }
+//        if(userViewModel.isLoginSuccessful(userName, password)){
+//            val parentActivity = activity as MainActivity
+//            parentActivity.isUserLoggedIn = true
+//            userViewModel.setUserLoggedIn(parentActivity.currentUser, true)
+//            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+//        }
     }
 
     private fun checkEmailAndPassword(email : String, password : String) : Boolean{
