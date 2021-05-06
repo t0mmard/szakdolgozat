@@ -21,6 +21,7 @@ import com.example.fitnessappclient.R
 import com.example.fitnessappclient.repository.entities.Exercise
 import com.example.fitnessappclient.repository.entities.ExerciseCategory
 import com.example.fitnessappclient.repository.entities.ExerciseType
+import com.example.fitnessappclient.view.mainactivity.MainActivity
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import kotlinx.android.synthetic.main.dialog_add_exercise.*
 import kotlinx.android.synthetic.main.dialog_add_exercise.view.*
@@ -112,6 +113,7 @@ class ExerciseListFragment : Fragment() {
                 val exerciseName = dialogView.et_addexercise_name.text.toString()
                 val selectedItemId = dialogView.sp_addexercise_categories.selectedItemId.toInt()
                 if (!exerciseName.isEmpty() && selectedItemId != -1) {
+                    val parentActivity = activity as MainActivity
                     val exerciseCategoryId = exerciseCategories[selectedItemId].exerciseCategoryId
                     workoutViewModel.insertExercise(
                         Exercise(
@@ -119,7 +121,8 @@ class ExerciseListFragment : Fragment() {
                             exerciseName,
                             exerciseCategoryId,
                             exerciseType,
-                            true
+                            true,
+                            parentActivity.currentUser
                         )
                     )
                 }

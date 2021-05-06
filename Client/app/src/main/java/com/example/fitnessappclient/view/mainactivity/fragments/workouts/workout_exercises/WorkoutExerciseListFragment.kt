@@ -152,7 +152,6 @@ class WorkoutExerciseListFragment : Fragment(), WorkoutExerciseRecyclerViewListe
 
     //item háttérszín állítása érintés esetén
     override fun myOnTouchListener(view: View, motionevent: MotionEvent) : Boolean {
-        //TODO: ha kéne
         return false
     }
 }

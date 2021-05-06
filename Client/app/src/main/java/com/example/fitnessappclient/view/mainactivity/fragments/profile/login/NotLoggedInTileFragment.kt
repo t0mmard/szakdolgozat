@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.fitnessappclient.R
 import com.example.fitnessappclient.view.mainactivity.fragments.profile.ProfileFragment
+import com.example.fitnessappclient.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_not_logged_in_tile.view.*
 
 class NotLoggedInTileFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

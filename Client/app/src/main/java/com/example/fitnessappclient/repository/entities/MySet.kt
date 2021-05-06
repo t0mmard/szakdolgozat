@@ -29,5 +29,6 @@ data class MySet(
     val workoutPlanExerciseId : Long?,
     val nTh: Short,
     val numberOfRepetitions: Short,
-    val secondaryNumber: Short
+    val secondaryNumber: Short,
+    val creatorId: Long
 )

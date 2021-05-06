@@ -21,5 +21,6 @@ data class MeasuringSession (
     val sessionId: Long,
     val userId: Long,
     val weight: Short,
-    val sessionDate: Date
+    val sessionDate: Date,
+    val creatorId: Long
 )

@@ -31,9 +31,6 @@ class ExerciseAdapter : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>
             println(position)
             tv_exercise_name.text = exercises[position].exerciseName
             tv_exercise_number.text = context.getString(R.string.which,position + 1)
-            setOnClickListener{
-                //TODO
-            }
             (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 0
             if(itemCount-1 == position){
                 (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 1000

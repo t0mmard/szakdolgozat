@@ -147,7 +147,8 @@ class MeasurementsTileFragment : Fragment() {
                         0,
                         parentActivity.currentUser,
                         weightShort,
-                        Date()
+                        Date(),
+                        parentActivity.currentUser
                     )
                 ).observe(viewLifecycleOwner, androidx.lifecycle.Observer { sessionId ->
                     val parentFragment = parentFragment as ProfileFragment

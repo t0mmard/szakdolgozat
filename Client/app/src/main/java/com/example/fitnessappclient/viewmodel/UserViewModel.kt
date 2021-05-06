@@ -19,6 +19,20 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     }
 
+    fun startup(){
+        viewModelScope.launch {
+            repository.startup()
+        }
+    }
+
+    fun getAllUsersFromDB() : LiveData<List<User>>{
+        return repository.getAllUsers()
+    }
+
+    fun getUserByUserId(userId: Long)  : LiveData<User>{
+        return repository.getUserByUserId(userId)
+    }
+
     fun addUser(user:User){
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertUser(user)
@@ -35,13 +49,8 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun isLoginSuccessful(userName : String, password: String) : Boolean{
-        //TODO : bejelentkezés szerverről
-        return true
-    }
-
     fun setUserLoggedIn(userId : Long, loggedIn : Boolean) :LiveData<Boolean>{
-        val result =MutableLiveData<Boolean>()
+        val result = MutableLiveData<Boolean>()
         viewModelScope.launch {
             repository.setUserLoggedIn(userId, loggedIn)
             result.postValue(true)
@@ -55,6 +64,14 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     fun getUserLoggedInByUserId(userId : Long) : LiveData<Boolean>{
         return repository.getUserLoggedInByUserId(userId)
+    }
+
+    fun deleteAllTables() : LiveData<Boolean>{
+        val result = MutableLiveData<Boolean>()
+        viewModelScope.launch {
+            result.postValue(repository.deleteAllTables())
+        }
+        return result
     }
 
 }

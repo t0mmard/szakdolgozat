@@ -19,6 +19,7 @@ import com.example.fitnessappclient.view.mainactivity.MainActivity
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import kotlinx.android.synthetic.main.fragment_plan.*
 import kotlinx.android.synthetic.main.fragment_workout_list.view.*
+import java.lang.Thread.sleep
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -34,9 +35,7 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_workout_list, container, false)
-
         val main = activity as MainActivity
-
         //WorokutViewModel init
         workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
 
@@ -64,9 +63,11 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
         view.rv_workoutlist.adapter = adapter
 
         workoutViewModel.getWorkoutsByDate(java.sql.Date.valueOf(main.selectedDate.toString())).observe(viewLifecycleOwner, Observer { workouts ->
+
             adapter.setData(workouts)
             if(workouts.isEmpty()) view.tv_workoutlist_empty.visibility = View.VISIBLE
             else view.tv_workoutlist_empty.visibility = View.INVISIBLE
+            view.lp_workoutlist_workouts.setVisibility(View.INVISIBLE)
         })
         //ha már rá van csatlakoztatva egy listára, akkor először le kell szedni róla és csak utána
         // szabad újat rakni rá különben, az előző tömböt próbálja változtatni
@@ -135,12 +136,14 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
 
     private fun initButtons(view : View, main: MainActivity){
         view.ibtn_workoutlist_previousdate.setOnClickListener {
+            view.lp_workoutlist_workouts.setVisibility(View.VISIBLE)
             main.selectedDate = main.selectedDate.minusDays(1L)
             addRecyclerViewAdapter(view,main,false)
             setDate(view,main)
         }
 
         view.ibtn_workoutlist_nextdate.setOnClickListener {
+            view.lp_workoutlist_workouts.setVisibility(View.VISIBLE)
             main.selectedDate = main.selectedDate.plusDays(1L)
             addRecyclerViewAdapter(view,main,false)
             setDate(view,main)
@@ -188,7 +191,6 @@ class WorkoutListFragment : Fragment(), WorkoutRecyclerViewListener {
 
     //item háttérszín állítása érintés esetén
     override fun myOnTouchListener(view: View, motionevent: MotionEvent) : Boolean {
-        //TODO: ha kéne
        return false
     }
 }

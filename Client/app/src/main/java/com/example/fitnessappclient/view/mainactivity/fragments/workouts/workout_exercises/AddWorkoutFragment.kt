@@ -82,8 +82,8 @@ class AddWorkoutFragment : Fragment() {
 
         //Ha üres automatikusan nevet kap
         if(inputCheck(workoutName)){ workoutName = requireContext().resources.getString(R.string.new_workout_hint) }
-        val workout = Workout(0, workoutViewModel.id,workoutName, java.sql.Date.valueOf(main.selectedDate.toString()),
-            null,null,null)
+        val workout = Workout(0L, main.currentUser, workoutName, java.sql.Date.valueOf(main.selectedDate.toString()),
+            null,null,null, main.currentUser)
 
         val workoutIdLiveData = workoutViewModel.addWorkout(workout)
         btn_addworkout_addworkout.isEnabled = false
@@ -103,7 +103,8 @@ class AddWorkoutFragment : Fragment() {
                                     workoutId,
                                     workoutExercise.exerciseId,
                                     null,
-                                    null
+                                    null,
+                                    main.currentUser
                                 )
                             )
                         }

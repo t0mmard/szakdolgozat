@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessappclient.R
 import com.example.fitnessappclient.repository.entities.Measurement
 import com.example.fitnessappclient.repository.entities.UserMeasurement
+import com.example.fitnessappclient.view.mainactivity.MainActivity
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import kotlinx.android.synthetic.main.dialog_add_measurement_measurementsession.view.*
 import kotlinx.android.synthetic.main.fragment_measurement_session.view.*
@@ -128,13 +129,14 @@ class MeasurementSessionFragment : Fragment() {
                 val length = dialogView.et_measurementname.text.toString()
                 var lengthShort : Short = 0
                 if (length.isNotEmpty()) lengthShort = length.toShort()
-
+                val parentActivity = activity as MainActivity
                 workoutViewModel.insertUserMeasurement(
                     UserMeasurement(
                         0,
                         args.sessionId,
                         measurements[selectedId.toInt()].measurementId,
-                        lengthShort
+                        lengthShort,
+                        parentActivity.currentUser
                     )
                 )
             })

@@ -9,6 +9,10 @@ import java.util.*
 @Dao
 interface UserDao {
 
+    //startup
+    @Query("select 1")
+    suspend fun startup() : Integer
+
     //Adatbázis létrehozásához
     @Insert
     fun notSuspendInsertMeasurements(measurements: List<Measurement>)
@@ -24,6 +28,9 @@ interface UserDao {
 
     @Insert
     fun notSuspendInsertWorkoutPlanExercises(workoutPlanExercises: List<WorkoutPlanExercises>)
+
+    @Insert
+    fun notSuspendInsertUser(user: User)
 
 
     ///////////////
@@ -89,6 +96,30 @@ interface UserDao {
 
     @Delete
     suspend fun removeExerciseCategory(exerciseCategory: ExerciseCategory)
+
+    @Transaction
+    @Query("select * from WORKOUT_PLAN_EXERCISES")
+    suspend fun getAllWorkoutPlanExercises() : List<WorkoutPlanExercises>
+
+    @Transaction
+    @Query("select * from USERS where userId = :id")
+    fun getUserByUserId(id : Long) : LiveData<User>
+
+    @Transaction
+    @Query("select * from SETS")
+    suspend fun getAllSets() : List<MySet>
+
+    @Transaction
+    @Query("select * from USER_MEASUREMENTS")
+    suspend fun getAllUserMeasurements() : List<UserMeasurement>
+
+    @Transaction
+    @Query("select * from WORKOUTS")
+    suspend fun getAllWorkouts() : List<Workout>
+
+    @Transaction
+    @Query("select * from WORKOUT_EXERCISES")
+    suspend fun getAllWorkoutExercises() : List<WorkoutExercise>
 
     @Transaction
     @Query("select * from WORKOUT_CATEGORIES")
@@ -186,8 +217,59 @@ interface UserDao {
     @Query("select * from WORKOUT_PLANS where workoutPlanId = :workoutPlanId")
     fun getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId : Long): LiveData<WorkoutPlanWithWorkoutPlanExercises>
 
-//    @Transaction
-//    @Query("SQL UTASITAS")
-//    suspend fun getValamAndValamiWithValamalapjan(valamialapja): visszateres
+    @Transaction
+    @Query("select * from USERS")
+    fun getAllUsers() : LiveData<List<User>>
+
+    @Transaction
+    @Query("select * from USERS where userId = :userId")
+    suspend fun getSuspendUserbyUserId(userId: Long): User
+
+    //Táblatörlés
+
+    @Transaction
+    @Query("delete from EXERCISES where creatorId != -1")
+    suspend fun deleteAllExercises()
+
+    @Transaction
+    @Query("delete from WORKOUT_CATEGORIES where creatorId != -1")
+    suspend fun deleteAllExerciseCategories()
+
+    @Transaction
+    @Query("delete from MEASURMENTS where creatorId != -1")
+    suspend fun deleteAllMeasurements()
+
+    @Transaction
+    @Query("delete from MEASURING_SESSION where creatorId != -1")
+    suspend fun deleteAllMeasuringSessions()
+
+    @Transaction
+    @Query("delete from SETS where creatorId != -1")
+    suspend fun deleteAllSets()
+
+    @Transaction
+    @Query("delete from USERS")
+    suspend fun deleteAllUsers()
+
+    @Transaction
+    @Query("delete from USER_MEASUREMENTS where creatorId != -1")
+    suspend fun deleteAllUserMeasurements()
+
+    @Transaction
+    @Query("delete from WORKOUTS where creatorId != -1")
+    suspend fun deleteAllWorkouts()
+
+    @Transaction
+    @Query("delete from WORKOUT_EXERCISES where creatorId != -1")
+    suspend fun deleteAllWorkoutExercises()
+
+    @Transaction
+    @Query("delete from WORKOUT_PLANS where creatorId != -1")
+    suspend fun deleteAllWorkoutPlans()
+
+    @Transaction
+    @Query("delete from WORKOUT_PLAN_EXERCISES where creatorId != -1")
+    suspend fun deleteAllWorkoutPlanExercises()
+
 
 }

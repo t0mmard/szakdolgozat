@@ -1,29 +1,25 @@
 package com.example.fitnessappclient.view.mainactivity
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.fitnessappclient.R
-import com.example.fitnessappclient.repository.entities.User
-import com.example.fitnessappclient.repository.retrofit.MyRetrofit
 import com.example.fitnessappclient.viewmodel.UserViewModel
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import java.time.LocalDate
-import java.util.*
-import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
 
     var selectedDate = LocalDate.now()
-    var  isUserLoggedIn = false
-    var currentUser = 1L
-    val retrofitClient = MyRetrofit()
+    var isUserLoggedIn = false
+    var currentUser = -2L //-2L default user
     lateinit var userViewModel : UserViewModel
+    lateinit var workoutViewModel : WorkoutViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,34 +31,26 @@ class MainActivity : AppCompatActivity() {
             R.id.workoutListFragment
         ).build()
 
-
-        deleteDatabase("local_database")
+        //deleteDatabase("local_database")
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel.startup()
+        workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
 
-        val loggedInLiveData = userViewModel.getUserLoggedInByUserId(currentUser)
-        loggedInLiveData.observe(this, androidx.lifecycle.Observer { loggedIn ->
-            loggedInLiveData.removeObservers(this)
-            if(loggedIn == null){
-                userViewModel.addUser(
-                    User(
-                        0,
-                        "none",
-                        "defaultUser",
-                        "none",
-                        true,
-                        0,
-                        false,
-                        Date()
-                    )
-                )
-            }
-            else{
-                isUserLoggedIn = loggedIn
+        //user betöltése
+        userViewModel.getAllUsersFromDB().observe(this, Observer { users ->
+            for(user in users){
+                if(user.loggedIn){
+                    isUserLoggedIn = true
+                    currentUser = user.userId
+                }
             }
         })
 
         setupActionBarWithNavController(findNavController(R.id.fragment_mainactivity),appBarConfiguration)
+
+        //TODO teszt törölni kell
+        workoutViewModel.fullSynchronization()
 
     }
 

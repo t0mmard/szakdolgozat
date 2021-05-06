@@ -1,6 +1,7 @@
 package com.example.fitnessappclient.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.fitnessappclient.repository.daos.UserDao
 import com.example.fitnessappclient.repository.entities.*
 import com.example.fitnessappclient.repository.relations.*
@@ -8,6 +9,10 @@ import java.util.*
 
 class Repository(private val userDao: UserDao) {
     val allUser : LiveData<List<User>> = userDao.getUsers()
+
+   suspend  fun startup(){
+        userDao.startup()
+    }
 
     suspend fun insertUser(user: User){
         userDao.insertUser(user)
@@ -183,6 +188,52 @@ class Repository(private val userDao: UserDao) {
 
     fun getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId : Long): LiveData<WorkoutPlanWithWorkoutPlanExercises>{
         return  userDao.getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId)
+    }
+
+    suspend fun getAllSets() : List<MySet>{
+        return userDao.getAllSets()
+    }
+
+    suspend fun getAllUserMeasurements() : List<UserMeasurement>{
+        return userDao.getAllUserMeasurements()
+    }
+
+    suspend fun getAllWorkouts() : List<Workout>{
+        return userDao.getAllWorkouts()
+    }
+
+    suspend fun getAllWorkoutExercises() : List<WorkoutExercise>{
+        return userDao.getAllWorkoutExercises()
+    }
+
+    fun getUserByUserId(id : Long) : LiveData<User>{
+        return userDao.getUserByUserId(id)
+    }
+
+    suspend fun getAllWorkoutPlanExercises() : List<WorkoutPlanExercises>{
+        return userDao.getAllWorkoutPlanExercises()
+    }
+
+    fun getAllUsers() : LiveData<List<User>>{
+        return userDao.getAllUsers()
+    }
+
+    suspend fun getSuspendUserByUserId(userId: Long): User {
+        return userDao.getSuspendUserbyUserId(userId)
+    }
+
+    suspend fun deleteAllTables() : Boolean{
+        userDao.deleteAllExercises()
+        userDao.deleteAllExerciseCategories()
+        userDao.deleteAllMeasurements()
+        userDao.deleteAllMeasuringSessions()
+        userDao.deleteAllSets()
+        userDao.deleteAllUserMeasurements()
+        userDao.deleteAllWorkouts()
+        userDao.deleteAllWorkoutExercises()
+        userDao.deleteAllWorkoutPlans()
+        userDao.deleteAllWorkoutPlanExercises()
+        return true
     }
 
 }

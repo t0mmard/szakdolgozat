@@ -27,5 +27,6 @@ data class UserMeasurement (
     val userMeasurementId: Long,
     val sessionId: Long,
     val measurementId: Long,
-    val length: Short
+    val length: Short,
+    val creatorId: Long
 )

@@ -2,5 +2,6 @@ package app.fitness.server.model
 
 data class LoginResponse (
     val response : String,
-    val success : Boolean
+    val success : Boolean,
+    val user : User?
 )

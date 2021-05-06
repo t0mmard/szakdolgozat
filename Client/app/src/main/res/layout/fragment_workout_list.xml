@@ -27,6 +27,25 @@
             app:layout_constraintTop_toBottomOf="@+id/cl_workoutlist_datebar"
             android:overScrollMode="always"/>
 
+        <RelativeLayout
+            android:id="@+id/lp_workoutlist_workouts"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_workoutlist_datebar"
+            android:visibility="visible"
+            android:gravity="center" >
+
+            <ProgressBar
+                android:layout_width="209dp"
+                android:layout_height="266dp"
+                android:indeterminate="true" />
+        </RelativeLayout>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_workoutlist_addworkout"
             android:layout_width="wrap_content"

@@ -15,6 +15,7 @@ import com.example.fitnessappclient.R
 import com.example.fitnessappclient.repository.entities.Exercise
 import com.example.fitnessappclient.repository.entities.ExerciseType
 import com.example.fitnessappclient.repository.entities.WorkoutPlanExercises
+import com.example.fitnessappclient.view.mainactivity.MainActivity
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import kotlinx.android.synthetic.main.fragment_choose_workout_plan_exercise_type.view.*
 
@@ -119,12 +120,14 @@ class ChooseWorkoutPlanExerciseTypeFragment : Fragment() {
 
         view.btn_chooseworkoutplan_addexercise.setOnClickListener {
             if(view.sp_chooseworkoutplan_exercise.selectedItemPosition != -1) {
+                val parentActivity = activity as MainActivity
                 when (type) {
                     ExerciseType.REPETITION -> {
                         val workoutPlanExercise = WorkoutPlanExercises(
                             0,
                             args.workoutPlanId,
-                            exerciseList[view.sp_chooseworkoutplan_exercise.selectedItemPosition].exerciseId
+                            exerciseList[view.sp_chooseworkoutplan_exercise.selectedItemPosition].exerciseId,
+                            parentActivity.currentUser
                         )
                         workoutViewModel.insertWorkoutPlanExercise(workoutPlanExercise)
                             .observe(viewLifecycleOwner,
@@ -140,7 +143,8 @@ class ChooseWorkoutPlanExerciseTypeFragment : Fragment() {
                         val workoutPlanExercise = WorkoutPlanExercises(
                             0,
                             args.workoutPlanId,
-                            exerciseList[view.sp_chooseworkoutplan_exercise.selectedItemPosition].exerciseId
+                            exerciseList[view.sp_chooseworkoutplan_exercise.selectedItemPosition].exerciseId,
+                            parentActivity.currentUser
                         )
                         workoutViewModel.insertWorkoutPlanExercise(workoutPlanExercise)
                             .observe(viewLifecycleOwner,
@@ -156,7 +160,8 @@ class ChooseWorkoutPlanExerciseTypeFragment : Fragment() {
                         val workoutPlanExercise = WorkoutPlanExercises(
                             0,
                             args.workoutPlanId,
-                            exerciseList[view.sp_chooseworkoutplan_exercise.selectedItemPosition].exerciseId
+                            exerciseList[view.sp_chooseworkoutplan_exercise.selectedItemPosition].exerciseId,
+                            parentActivity.currentUser
                         )
                         workoutViewModel.insertWorkoutPlanExercise(workoutPlanExercise)
                             .observe(viewLifecycleOwner,

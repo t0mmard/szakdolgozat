@@ -30,9 +30,6 @@ class WorkoutPlanExerciseAdapter : RecyclerView.Adapter<WorkoutPlanExerciseAdapt
         holder.itemView.apply{
             tv_exercise_name.text = exercises[position].exercise.exerciseName
             tv_exercise_number.text = context.getString(R.string.which,position + 1)
-            setOnClickListener{
-                //TODO
-            }
             (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 0
             if(itemCount-1 == position){
                 println("beléptem az utolsóra $position")

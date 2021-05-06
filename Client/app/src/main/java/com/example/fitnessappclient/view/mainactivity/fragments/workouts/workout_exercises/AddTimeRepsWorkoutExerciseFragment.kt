@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessappclient.R
 import com.example.fitnessappclient.repository.entities.ExerciseType
 import com.example.fitnessappclient.repository.entities.MySet
+import com.example.fitnessappclient.view.mainactivity.MainActivity
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import kotlinx.android.synthetic.main.fragment_add_no_weight_reps_workout_exercise.etNumberOfReps
 import kotlinx.android.synthetic.main.fragment_add_time_reps_workout_exercise.*
@@ -100,13 +101,15 @@ class AddTimeRepsWorkoutExerciseFragment : Fragment() {
         }
 
         view.btnAddSet.setOnClickListener {
+            val parentActivity = activity as MainActivity
             val set = MySet(
                 0,
                 args.workoutExerciseId,
                 null,
                 (adapter.itemCount + 1 ).toShort(),
                 etNumberOfMins.text.toString().toShort(),
-                etDistance.text.toString().toShort()
+                etDistance.text.toString().toShort(),
+                parentActivity.currentUser
             )
             workoutViewModel.insertSet(set)
         }

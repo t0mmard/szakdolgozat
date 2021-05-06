@@ -7,16 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.fitnessappclient.R
 import com.example.fitnessappclient.view.mainactivity.MainActivity
 import com.example.fitnessappclient.view.mainactivity.fragments.profile.ProfileFragment
 import com.example.fitnessappclient.viewmodel.UserViewModel
+import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import kotlinx.android.synthetic.main.fragment_logged_in_tile.view.*
+import java.lang.Thread.sleep
 
 class LoggedInTileFragment : Fragment() {
 
     private lateinit var userViewModel: UserViewModel
+    private lateinit var workoutViewModel: WorkoutViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +30,7 @@ class LoggedInTileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_logged_in_tile, container, false)
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
 
         initButtons(view)
 
@@ -40,9 +45,9 @@ class LoggedInTileFragment : Fragment() {
             logout(view)
         }
 
-        userViewModel.getUserNameByUserId(parentActivity.currentUser).observe(viewLifecycleOwner,
-            Observer { name ->
-                view.tv_loggedin_user.text = name
+        userViewModel.getUserByUserId(parentActivity.currentUser).observe(viewLifecycleOwner,
+            Observer { user ->
+                view.tv_loggedin_user.text = user.email
             })
     }
 
@@ -50,10 +55,13 @@ class LoggedInTileFragment : Fragment() {
         val parentActivity = activity as MainActivity
         parentActivity.isUserLoggedIn = false
         userViewModel.setUserLoggedIn(parentActivity.currentUser, false)
-        val parentFragment = parentFragment as ProfileFragment
-        parentFragment.childFragmentManager.commit {
-            replace(R.id.fragment_profile_login, NotLoggedInTileFragment())
-        }
+        parentActivity.currentUser = -2L
+        userViewModel.deleteAllTables().observe(viewLifecycleOwner, Observer {
+            val parentFragment = parentFragment as ProfileFragment
+            parentFragment.childFragmentManager.commit {
+                replace(R.id.fragment_profile_login, NotLoggedInTileFragment())
+            }
+        })
     }
 
 }

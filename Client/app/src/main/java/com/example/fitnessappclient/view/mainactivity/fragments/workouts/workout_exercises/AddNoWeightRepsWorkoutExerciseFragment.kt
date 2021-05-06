@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessappclient.R
 import com.example.fitnessappclient.repository.entities.ExerciseType
 import com.example.fitnessappclient.repository.entities.MySet
+import com.example.fitnessappclient.view.mainactivity.MainActivity
 import com.example.fitnessappclient.viewmodel.WorkoutViewModel
 import kotlinx.android.synthetic.main.fragment_add_no_weight_reps_workout_exercise.*
 import kotlinx.android.synthetic.main.fragment_add_no_weight_reps_workout_exercise.view.*
@@ -89,13 +90,15 @@ class AddNoWeightRepsWorkoutExerciseFragment : Fragment() {
         }
 
         view.btnAddSet.setOnClickListener {
+            val parentActivity = activity as MainActivity
             val set = MySet(
                 0,
                 args.workoutExerciseId,
                 null,
                 (adapter.itemCount + 1 ).toShort(),
                 etNumberOfReps.text.toString().toShort(),
-                0
+                0,
+                parentActivity.currentUser
             )
             workoutViewModel.insertSet(set)
         }

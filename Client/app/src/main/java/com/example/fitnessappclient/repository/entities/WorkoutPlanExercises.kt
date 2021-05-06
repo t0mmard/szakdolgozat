@@ -27,5 +27,6 @@ data class WorkoutPlanExercises(
     @PrimaryKey(autoGenerate = true)
     val workoutPlanExerciseId: Long,
     val workoutPlanId: Long,
-    val exerciseId: Long
+    val exerciseId: Long,
+    val creatorId: Long
 )

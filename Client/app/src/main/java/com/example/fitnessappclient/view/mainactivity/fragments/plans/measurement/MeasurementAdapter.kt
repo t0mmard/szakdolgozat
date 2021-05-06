@@ -30,9 +30,6 @@ class MeasurementAdapter : RecyclerView.Adapter<MeasurementAdapter.MeasurementVi
         holder.itemView.apply{
             tv_exercise_name.text = measurements[position].bodyPart
             tv_exercise_number.text = context.getString(R.string.which,position + 1)
-            setOnClickListener{
-                //TODO
-            }
             (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 0
             if(measurements.lastIndex == position){
                 (holder.itemView.layoutParams as RecyclerView.LayoutParams).bottomMargin = 1000

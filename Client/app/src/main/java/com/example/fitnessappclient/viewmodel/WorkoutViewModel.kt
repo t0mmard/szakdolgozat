@@ -12,6 +12,8 @@ import com.example.fitnessappclient.repository.relations.UserMeasurementAndMeasu
 import com.example.fitnessappclient.repository.relations.WorkoutExerciseAndExercise
 import com.example.fitnessappclient.repository.relations.WorkoutPlanExerciseAndExercise
 import com.example.fitnessappclient.repository.relations.WorkoutPlanWithWorkoutPlanExercises
+import com.example.fitnessappclient.repository.retrofit.FullSynchronizationData
+import com.example.fitnessappclient.repository.retrofit.MyRetrofit
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -234,6 +236,27 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
 
     fun getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId : Long): LiveData<WorkoutPlanWithWorkoutPlanExercises>{
         return repository.getWorkoutExerciseWithWorkoutExercisesByWorkoutPlanId(workoutPlanId)
+    }
+
+    fun fullSynchronization(){
+        viewModelScope.launch {
+
+            val fullSynchronizationData = FullSynchronizationData(
+                repository.getAllExercises().value,
+                repository.getAllExerciseCategories().value,
+                repository.getAllMeasurements().value,
+                repository.getMeasuringSessions().value,
+                repository.getAllSets(),
+                repository.getSuspendUserByUserId(id),
+                repository.getAllUserMeasurements(),
+                repository.getAllWorkouts(),
+                repository.getAllWorkoutExercises(),
+                repository.getAllWorkoutPlans().value,
+                repository.getAllWorkoutPlanExercises()
+            )
+
+            MyRetrofit.fullSynchronization(fullSynchronizationData)
+        }
     }
 
 }

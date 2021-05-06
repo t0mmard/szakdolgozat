@@ -29,5 +29,6 @@ data class WorkoutExercise(
     val workoutId: Long,
     val exerciseId: Long,
     val clientComment: String?,
-    val coachComment: String?
+    val coachComment: String?,
+    val creatorId: Long
 )

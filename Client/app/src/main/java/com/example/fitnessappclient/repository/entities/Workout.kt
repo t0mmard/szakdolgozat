@@ -32,5 +32,6 @@ data class Workout (
     val workoutDate : Date,
     val clientComment: String?,
     val coachComment: String?,
-    val workoutPlanId: Long?
+    val workoutPlanId: Long?,
+    val creatorId: Long
 )

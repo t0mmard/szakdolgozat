@@ -8,7 +8,7 @@ import java.util.*
     tableName = "USERS"
 )
 data class User(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val userId : Long,
     val email : String,
     val lastName: String,

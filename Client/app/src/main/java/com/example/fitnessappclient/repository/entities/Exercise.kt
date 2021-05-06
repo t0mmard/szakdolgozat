@@ -21,7 +21,8 @@ data class Exercise(
     val exerciseName:String,
     val exerciseCategoryId: Long,
     val exerciseType: ExerciseType,
-    val deletableByUser: Boolean
+    val deletableByUser: Boolean,
+    val creatorId: Long
     //val workoutCategoryId: Long TODO: Ezt is fel kell venni
 )
 

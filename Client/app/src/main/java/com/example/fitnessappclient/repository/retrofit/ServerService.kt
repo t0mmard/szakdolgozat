@@ -13,4 +13,10 @@ interface ServerService {
     @POST("/check_login")
     fun login(@Body authenticationData: AuthenticationData ) : Call<LoginResponse>
 
+    @POST("/register")
+    fun register(@Body authenticationData: AuthenticationData) : Call<RegistrationResponse>
+    
+    @POST("full_synchronization")
+    fun fullSynchronization(@Body fullSynchronizationData: FullSynchronizationData) : Call<SynchronizationResponse>
+
 }

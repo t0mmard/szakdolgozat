@@ -73,6 +73,10 @@
     <string name="add">Hozzáadás</string>
     <string name="cancel">Mégse</string>
 
+    <string name="warning">Figyelem</string>
+    <string name="delete_warning_message">Ha bejelentkezik, elvesznek a helyi adatok!</string>
+    <string name="okay">Rendben</string>
+
     <string name="new_measurement_dialog_title">Testméret felvétele</string>
     <string name="measurement_name">Testméret neve</string>
     <string name="new_measurement_hint">Új testméret neve</string>
